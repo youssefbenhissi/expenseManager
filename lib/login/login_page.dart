@@ -1,4 +1,10 @@
+import 'dart:async';
+
+import 'package:expense_manager/signup/signup_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:local_auth/local_auth.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -8,6 +14,31 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final LocalAuthentication auth = LocalAuthentication();
+
+  Future<void> _authenticate() async {
+    bool authenticated = false;
+    try {
+      authenticated = await auth.authenticate(
+        localizedReason: 'Let OS determine authentication method',
+        options: const AuthenticationOptions(
+          stickyAuth: true,
+        ),
+      );
+      if (authenticated) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const SignUpPage()),
+        );
+      }
+    } on PlatformException catch (e) {
+      return;
+    }
+    if (!mounted) {
+      return;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -116,6 +147,27 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Center(
+                  child: GestureDetector(
+                    onTap: _authenticate,
+                    child: Container(
+                      width: 60.0,
+                      height: 60.0,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.blue,
+                      ),
+                      child: const Icon(
+                        FlutterIcons.fingerprint_faw5s,
+                        color: Colors.white,
+                        size: 30.0,
                       ),
                     ),
                   ),
