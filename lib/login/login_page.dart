@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:expense_manager/home/home_page.dart';
 import 'package:expense_manager/provider/locale_provider.dart';
 import 'package:expense_manager/signup/signup_page.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
       if (authenticated) {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const SignUpPage()),
+          MaterialPageRoute(builder: (context) => const HomePage()),
         );
       }
     } on PlatformException {
