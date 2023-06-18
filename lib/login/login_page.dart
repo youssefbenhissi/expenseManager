@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:expense_manager/provider/locale_provider.dart';
 import 'package:expense_manager/signup/signup_page.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,24 @@ class _LoginPageState extends State<LoginPage> {
           MaterialPageRoute(builder: (context) => const SignUpPage()),
         );
       }
-    } on PlatformException catch (e) {
+    } on PlatformException {
+      final snackBar = SnackBar(
+        elevation: 0,
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.transparent,
+        content: AwesomeSnackbarContent(
+          title: 'Device support',
+          message:
+              'Your device does not support any other login options.Please login by entering your e-mail and password',
+
+          /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
+          contentType: ContentType.failure,
+        ),
+      );
+
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(snackBar);
       return;
     }
     if (!mounted) {
