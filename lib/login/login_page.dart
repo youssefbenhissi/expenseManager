@@ -4,7 +4,6 @@ import 'package:expense_manager/signup/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -165,7 +164,7 @@ class _LoginPageState extends State<LoginPage> {
                         color: Colors.blue,
                       ),
                       child: const Icon(
-                        FlutterIcons.fingerprint_faw5s,
+                        Icons.fingerprint,
                         color: Colors.white,
                         size: 30.0,
                       ),
