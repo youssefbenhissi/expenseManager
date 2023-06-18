@@ -1,9 +1,12 @@
 import 'dart:async';
 
+import 'package:expense_manager/provider/locale_provider.dart';
 import 'package:expense_manager/signup/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -93,6 +96,8 @@ class _LoginPageState extends State<LoginPage> {
                       ]),
                   child: TextField(
                     decoration: InputDecoration(
+                      hintText: "E-mail",
+                      hintStyle: const TextStyle(color: Colors.grey),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                         borderSide: const BorderSide(
@@ -130,6 +135,8 @@ class _LoginPageState extends State<LoginPage> {
                       ]),
                   child: TextField(
                     decoration: InputDecoration(
+                      hintText: AppLocalizations.of(context)!.motDePasseTitre,
+                      hintStyle: const TextStyle(color: Colors.grey),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                         borderSide: const BorderSide(
@@ -153,27 +160,95 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(
                   height: 20,
                 ),
-                Center(
-                  child: GestureDetector(
-                    onTap: _authenticate,
-                    child: Container(
-                      width: 60.0,
-                      height: 60.0,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.blue,
-                      ),
-                      child: const Icon(
-                        Icons.fingerprint,
-                        color: Colors.white,
-                        size: 30.0,
-                      ),
-                    ),
-                  ),
-                ),
               ],
             ),
-          )
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Container(
+            width: width * 0.5,
+            height: height * 0.08,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              image: const DecorationImage(
+                image: AssetImage("assets/images/loginbtn.png"),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: const Center(
+              child: Text(
+                "Sign In",
+                style: TextStyle(
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Center(
+            child: GestureDetector(
+              onTap: _authenticate,
+              child: Container(
+                width: 60.0,
+                height: 60.0,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.blue,
+                ),
+                child: const Icon(
+                  Icons.fingerprint,
+                  color: Colors.white,
+                  size: 30.0,
+                ),
+              ),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                  onPressed: () {
+                    final provider =
+                        Provider.of<LocaleProvider>(context, listen: false);
+
+                    provider.setLocale(const Locale('fr'));
+                  },
+                  child: const Text("FRANÇAIS",
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        color: Colors.black,
+                      ))),
+              TextButton(
+                  onPressed: () {
+                    final provider =
+                        Provider.of<LocaleProvider>(context, listen: false);
+
+                    provider.setLocale(const Locale('ar'));
+                  },
+                  child: const Text("العربية",
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        color: Colors.black,
+                      ))),
+              TextButton(
+                  onPressed: () {
+                    final provider =
+                        Provider.of<LocaleProvider>(context, listen: false);
+
+                    provider.setLocale(const Locale('en'));
+                  },
+                  child: const Text("English",
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        color: Colors.black,
+                      ))),
+            ],
+          ),
         ],
       ),
     );
