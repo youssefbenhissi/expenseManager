@@ -1,3 +1,5 @@
+import 'package:expense_manager/theme/dark_theme.dart';
+import 'package:expense_manager/theme/light_theme.dart';
 import 'package:flutter/material.dart';
 import 'login/login_page.dart';
 import 'l10n/l10n.dart';
@@ -25,6 +27,8 @@ class _MyAppState extends State<MyApp> {
       builder: (context, child) {
         final provider = Provider.of<LocaleProvider>(context);
         return MaterialApp(
+          theme: lightTheme,
+          darkTheme: darkTheme,
           supportedLocales: L10n.all,
           localizationsDelegates: const [
             AppLocalizations.delegate,
