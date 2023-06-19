@@ -1,4 +1,5 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:expense_manager/login/login_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
@@ -104,7 +105,13 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       ListTile(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LoginPage()),
+                          );
+                        },
                         leading: const Icon(
                           Icons.logout,
                           color: Colors.black,

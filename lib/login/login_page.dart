@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:expense_manager/common/popup_notification.dart';
 import 'package:expense_manager/home/home_page.dart';
 import 'package:expense_manager/provider/locale_provider.dart';
 import 'package:flutter/material.dart';
@@ -26,23 +27,11 @@ class _LoginPageState extends State<LoginPage> {
     String password = prefs.getString('password') ?? '';
     bool authenticated = false;
     if (email.isEmpty || password.isEmpty) {
-      final snackBar = SnackBar(
-        elevation: 0,
-        behavior: SnackBarBehavior.floating,
-        backgroundColor: Colors.transparent,
-        content: AwesomeSnackbarContent(
-          title: 'Credentials needed',
+      errorPopUpNotification.create(
+          context: context,
+          title: "Device support",
           message:
-              'You need at least to connect one time using your email and password',
-
-          /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
-          contentType: ContentType.failure,
-        ),
-      );
-
-      ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(snackBar);
+              "Your device does not support any other login options.Please login by entering your e-mail and password");
     } else {
       try {
         authenticated = await auth.authenticate(
@@ -58,23 +47,11 @@ class _LoginPageState extends State<LoginPage> {
           );
         }
       } on PlatformException {
-        final snackBar = SnackBar(
-          elevation: 0,
-          behavior: SnackBarBehavior.floating,
-          backgroundColor: Colors.transparent,
-          content: AwesomeSnackbarContent(
-            title: 'Device support',
+        errorPopUpNotification.create(
+            context: context,
+            title: "Device support",
             message:
-                'Your device does not support any other login options.Please login by entering your e-mail and password',
-
-            /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
-            contentType: ContentType.failure,
-          ),
-        );
-
-        ScaffoldMessenger.of(context)
-          ..hideCurrentSnackBar()
-          ..showSnackBar(snackBar);
+                "Your device does not support any other login options.Please login by entering your e-mail and password");
         return;
       }
     }
