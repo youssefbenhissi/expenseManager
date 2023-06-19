@@ -211,21 +211,52 @@ class _LoginPageState extends State<LoginPage> {
             height: 20,
           ),
           Center(
-            child: GestureDetector(
-              onTap: _authenticate,
-              child: Container(
-                width: 60.0,
-                height: 60.0,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.blue,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Container(
+                  width: 60.0,
+                  height: 60.0,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.red,
+                  ),
+                  child: IconButton(
+                    icon: Image.asset("assets/images/google.png"),
+                    color: Colors.white,
+                    onPressed: _authenticate,
+                  ),
                 ),
-                child: const Icon(
-                  Icons.fingerprint,
-                  color: Colors.white,
-                  size: 30.0,
+                Container(
+                  width: 60.0,
+                  height: 60.0,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.blue,
+                  ),
+                  child: IconButton(
+                    icon: Image.asset("assets/images/facebook.png"),
+                    color: Colors.white,
+                    onPressed: _authenticate,
+                  ),
                 ),
-              ),
+                GestureDetector(
+                  onTap: _authenticate,
+                  child: Container(
+                    width: 60.0,
+                    height: 60.0,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.blue,
+                    ),
+                    child: const Icon(
+                      Icons.fingerprint,
+                      color: Colors.white,
+                      size: 30.0,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           Row(
