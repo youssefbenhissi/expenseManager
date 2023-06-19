@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:expense_manager/app_page_injectable.dart';
 import 'package:expense_manager/common/popup_notification.dart';
-import 'package:expense_manager/common/show_case_widget.dart';
 import 'package:expense_manager/home/home_page.dart';
 import 'package:expense_manager/provider/locale_provider.dart';
 import 'package:flutter/material.dart';
@@ -14,9 +13,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:showcaseview/showcaseview.dart';
 
 class LoginPage extends StatefulWidget {
-  static const PREFERENCES_IS_FIRST_LAUNCH_STRING =
-      "PREFERENCES_IS_FIRST_LAUNCH_STRING";
-
   const LoginPage({super.key});
 
   @override
@@ -26,10 +22,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   GlobalKey _one = GlobalKey();
   late BuildContext myContext;
-  final GlobalKey globalKeyOne = GlobalKey();
-  final GlobalKey globalKeyTwo = GlobalKey();
-  final GlobalKey globalKeyThree = GlobalKey();
-  final GlobalKey globalKeyFour = GlobalKey();
   late TextEditingController emailController;
   late TextEditingController passwordController;
   final LocalAuthentication auth = LocalAuthentication();
@@ -51,19 +43,6 @@ class _LoginPageState extends State<LoginPage> {
     setState(() {
       _isPasswordValid = value.length >= 5;
     });
-  }
-
-  Future<bool> _isFirstLaunch() async {
-    final sharedPreferences = await SharedPreferences.getInstance();
-    bool isFirstLaunch = sharedPreferences
-            .getBool(LoginPage.PREFERENCES_IS_FIRST_LAUNCH_STRING) ??
-        true;
-
-    if (isFirstLaunch)
-      sharedPreferences.setBool(
-          LoginPage.PREFERENCES_IS_FIRST_LAUNCH_STRING, false);
-
-    return isFirstLaunch;
   }
 
   Future<void> _fingerPrintAuthenticate() async {
@@ -110,9 +89,7 @@ class _LoginPageState extends State<LoginPage> {
     emailController = TextEditingController();
     passwordController = TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _isFirstLaunch().then((result) {
-        ShowCaseWidget.of(myContext).startShowCase([_one]);
-      });
+      ShowCaseWidget.of(myContext).startShowCase([_one]);
     });
     super.initState();
   }
@@ -316,13 +293,24 @@ class _LoginPageState extends State<LoginPage> {
                   myContext = context;
                   return Showcase(
                     key: _one,
-                    title: 'Title',
-                    description: 'Desc',
-                    child: InkWell(
-                        onTap: () {},
-                        child: FloatingActionButton(onPressed: () {
-                          print("floating");
-                        })),
+                    title: 'Facebook',
+                    description: 'You can login via Facebook',
+                    child: GestureDetector(
+                      onTap: _fingerPrintAuthenticate,
+                      child: Container(
+                        width: 60.0,
+                        height: 60.0,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.blue,
+                        ),
+                        child: const Icon(
+                          Icons.facebook_outlined,
+                          color: Colors.white,
+                          size: 30.0,
+                        ),
+                      ),
+                    ),
                   );
                 })),
                 GestureDetector(
