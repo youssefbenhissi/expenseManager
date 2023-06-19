@@ -234,8 +234,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           GestureDetector(
             onTap: () {
-              if (passwordController.text.isNotEmpty &&
-                  emailController.text.isNotEmpty) {
+              if (_isEmailValid && _isPasswordValid) {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const HomePage()),
