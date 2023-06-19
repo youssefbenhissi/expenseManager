@@ -19,6 +19,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  late TextEditingController emailController;
+  late TextEditingController passwordController;
   final LocalAuthentication auth = LocalAuthentication();
 
   Future<void> _fingerPrintAuthenticate() async {
@@ -58,6 +60,20 @@ class _LoginPageState extends State<LoginPage> {
     if (!mounted) {
       return;
     }
+  }
+
+  @override
+  void initState() {
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -115,6 +131,7 @@ class _LoginPageState extends State<LoginPage> {
                         )
                       ]),
                   child: TextField(
+                    controller: emailController,
                     decoration: InputDecoration(
                       hintText: "E-mail",
                       hintStyle: const TextStyle(color: Colors.grey),
@@ -154,6 +171,8 @@ class _LoginPageState extends State<LoginPage> {
                         )
                       ]),
                   child: TextField(
+                    obscureText: true,
+                    controller: passwordController,
                     decoration: InputDecoration(
                       hintText: AppLocalizations.of(context)!.motDePasseTitre,
                       hintStyle: const TextStyle(color: Colors.grey),
@@ -187,7 +206,20 @@ class _LoginPageState extends State<LoginPage> {
             height: 20,
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              if (passwordController.text.isNotEmpty &&
+                  emailController.text.isNotEmpty) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomePage()),
+                );
+              } else {
+                errorPopUpNotification.create(
+                    context: context,
+                    title: "Error",
+                    message: "veirfy your credentials please !");
+              }
+            },
             child: Container(
               width: width * 0.5,
               height: height * 0.08,

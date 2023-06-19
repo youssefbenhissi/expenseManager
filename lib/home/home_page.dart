@@ -141,7 +141,20 @@ class _HomePageState extends State<HomePage> {
                   ..rotateY((pi / 6) * val),
                 child: Scaffold(
                   appBar: AppBar(
-                    title: const Text("3D Drawer Menu"),
+                    title: Row(
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.menu),
+                          onPressed: () {
+                            setState(() {
+                              value == 1 ? value = 0 : value = 1;
+                            });
+                          },
+                        ),
+                        const Text("3D Drawer Menu"),
+                      ],
+                    ),
+                    automaticallyImplyLeading: false,
                   ),
                   body: const Center(
                     child: Text("Swipe right"),
