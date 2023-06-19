@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:expense_manager/home/home_page.dart';
 import 'package:expense_manager/provider/locale_provider.dart';
-import 'package:expense_manager/signup/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -20,30 +20,20 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final LocalAuthentication auth = LocalAuthentication();
 
-  Future<void> _authenticate() async {
+  Future<void> _fingerPrintAuthenticate() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String email = prefs.getString('email') ?? '';
+    String password = prefs.getString('password') ?? '';
     bool authenticated = false;
-    try {
-      authenticated = await auth.authenticate(
-        localizedReason: 'Let OS determine authentication method',
-        options: const AuthenticationOptions(
-          stickyAuth: true,
-        ),
-      );
-      if (authenticated) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const HomePage()),
-        );
-      }
-    } on PlatformException {
+    if (email.isEmpty || password.isEmpty) {
       final snackBar = SnackBar(
         elevation: 0,
         behavior: SnackBarBehavior.floating,
         backgroundColor: Colors.transparent,
         content: AwesomeSnackbarContent(
-          title: 'Device support',
+          title: 'Credentials needed',
           message:
-              'Your device does not support any other login options.Please login by entering your e-mail and password',
+              'You need at least to connect one time using your email and password',
 
           /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
           contentType: ContentType.failure,
@@ -53,7 +43,40 @@ class _LoginPageState extends State<LoginPage> {
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
         ..showSnackBar(snackBar);
-      return;
+    } else {
+      try {
+        authenticated = await auth.authenticate(
+          localizedReason: 'Let OS determine authentication method',
+          options: const AuthenticationOptions(
+            stickyAuth: true,
+          ),
+        );
+        if (authenticated) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const HomePage()),
+          );
+        }
+      } on PlatformException {
+        final snackBar = SnackBar(
+          elevation: 0,
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Colors.transparent,
+          content: AwesomeSnackbarContent(
+            title: 'Device support',
+            message:
+                'Your device does not support any other login options.Please login by entering your e-mail and password',
+
+            /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
+            contentType: ContentType.failure,
+          ),
+        );
+
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+        return;
+      }
     }
     if (!mounted) {
       return;
@@ -186,23 +209,26 @@ class _LoginPageState extends State<LoginPage> {
           const SizedBox(
             height: 20,
           ),
-          Container(
-            width: width * 0.5,
-            height: height * 0.08,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              image: const DecorationImage(
-                image: AssetImage("assets/images/loginbtn.png"),
-                fit: BoxFit.cover,
+          GestureDetector(
+            onTap: () {},
+            child: Container(
+              width: width * 0.5,
+              height: height * 0.08,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                image: const DecorationImage(
+                  image: AssetImage("assets/images/loginbtn.png"),
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            child: const Center(
-              child: Text(
-                "Sign In",
-                style: TextStyle(
-                  fontSize: 36,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+              child: const Center(
+                child: Text(
+                  "Sign In",
+                  style: TextStyle(
+                    fontSize: 36,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
@@ -222,9 +248,9 @@ class _LoginPageState extends State<LoginPage> {
                     color: Colors.red,
                   ),
                   child: IconButton(
-                    icon: Image.asset("assets/images/google.png"),
+                    icon: Image.asset("assets/images/g.png"),
                     color: Colors.white,
-                    onPressed: _authenticate,
+                    onPressed: _fingerPrintAuthenticate,
                   ),
                 ),
                 Container(
@@ -235,13 +261,13 @@ class _LoginPageState extends State<LoginPage> {
                     color: Colors.blue,
                   ),
                   child: IconButton(
-                    icon: Image.asset("assets/images/facebook.png"),
+                    icon: Image.asset("assets/images/f.png"),
                     color: Colors.white,
-                    onPressed: _authenticate,
+                    onPressed: _fingerPrintAuthenticate,
                   ),
                 ),
                 GestureDetector(
-                  onTap: _authenticate,
+                  onTap: _fingerPrintAuthenticate,
                   child: Container(
                     width: 60.0,
                     height: 60.0,
