@@ -144,7 +144,7 @@ class _HomePageState extends State<HomePage> {
                     title: Row(
                       children: [
                         IconButton(
-                          icon: Icon(Icons.menu),
+                          icon: const Icon(Icons.menu),
                           onPressed: () {
                             setState(() {
                               value == 1 ? value = 0 : value = 1;

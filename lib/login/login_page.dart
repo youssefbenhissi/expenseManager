@@ -22,6 +22,25 @@ class _LoginPageState extends State<LoginPage> {
   late TextEditingController emailController;
   late TextEditingController passwordController;
   final LocalAuthentication auth = LocalAuthentication();
+  bool _isPasswordValid = true;
+  bool _isEmailValid = true;
+  bool _validateEmail(String email) {
+    final emailRegex = RegExp(
+        r'^[\w-]+(\.[\w-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$');
+    return emailRegex.hasMatch(email);
+  }
+
+  void _onEmailChanged(String value) {
+    setState(() {
+      _isEmailValid = _validateEmail(value);
+    });
+  }
+
+  void _onPasswordChanged(String value) {
+    setState(() {
+      _isPasswordValid = value.length >= 5;
+    });
+  }
 
   Future<void> _fingerPrintAuthenticate() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -29,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
     String password = prefs.getString('password') ?? '';
     bool authenticated = false;
     if (email.isEmpty || password.isEmpty) {
-      errorPopUpNotification.create(
+      ErrorPopUpNotification.create(
           context: context,
           title: "Device support",
           message:
@@ -49,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
           );
         }
       } on PlatformException {
-        errorPopUpNotification.create(
+        ErrorPopUpNotification.create(
             context: context,
             title: "Device support",
             message:
@@ -131,9 +150,13 @@ class _LoginPageState extends State<LoginPage> {
                         )
                       ]),
                   child: TextField(
+                    onChanged: _onEmailChanged,
+                    keyboardType: TextInputType.emailAddress,
                     controller: emailController,
                     decoration: InputDecoration(
                       hintText: "E-mail",
+                      errorText:
+                          _isEmailValid ? null : 'Please enter a valid email',
                       hintStyle: const TextStyle(color: Colors.grey),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
@@ -172,8 +195,12 @@ class _LoginPageState extends State<LoginPage> {
                       ]),
                   child: TextField(
                     obscureText: true,
+                    onChanged: _onPasswordChanged,
                     controller: passwordController,
                     decoration: InputDecoration(
+                      errorText: _isPasswordValid
+                          ? null
+                          : 'Password must be at least 5 characters',
                       hintText: AppLocalizations.of(context)!.motDePasseTitre,
                       hintStyle: const TextStyle(color: Colors.grey),
                       focusedBorder: OutlineInputBorder(
@@ -214,7 +241,7 @@ class _LoginPageState extends State<LoginPage> {
                   MaterialPageRoute(builder: (context) => const HomePage()),
                 );
               } else {
-                errorPopUpNotification.create(
+                ErrorPopUpNotification.create(
                     context: context,
                     title: "Error",
                     message: "veirfy your credentials please !");
