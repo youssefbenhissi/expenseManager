@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:expense_manager/app_page_injectable.dart';
 import 'package:expense_manager/common/popup_notification.dart';
 import 'package:expense_manager/home/home_page.dart';
 import 'package:expense_manager/provider/locale_provider.dart';
@@ -235,10 +235,7 @@ class _LoginPageState extends State<LoginPage> {
           GestureDetector(
             onTap: () {
               if (_isEmailValid && _isPasswordValid) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomePage()),
-                );
+                context.gNavigationService.openHome(context);
               } else {
                 ErrorPopUpNotification.create(
                     context: context,
