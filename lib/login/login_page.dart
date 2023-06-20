@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:async';
 
 import 'package:expense_manager/app_page_injectable.dart';
@@ -20,7 +22,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  GlobalKey _one = GlobalKey();
+  final GlobalKey _one = GlobalKey();
   late BuildContext myContext;
   late TextEditingController emailController;
   late TextEditingController passwordController;
