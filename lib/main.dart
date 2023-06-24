@@ -5,6 +5,7 @@ import 'package:expense_manager/theme/dark_theme.dart';
 import 'package:expense_manager/theme/light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:showcaseview/showcaseview.dart';
 import 'login/login_page.dart';
 import 'l10n/l10n.dart';
 import 'package:provider/provider.dart';
@@ -54,7 +55,9 @@ class _MyAppState extends State<MyApp> {
               GlobalWidgetsLocalizations.delegate,
             ],
             locale: provider.locale,
-            home: const LoginPage(),
+            home: ShowCaseWidget(
+              builder: Builder(builder: (context) => const LoginPage()),
+            ),
           ),
         );
       });

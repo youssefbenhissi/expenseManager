@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:expense_manager/app_page_injectable.dart';
 import 'package:expense_manager/common/popup_notification.dart';
+import 'package:expense_manager/common/show_case_widget.dart';
 import 'package:expense_manager/home/home_page.dart';
 import 'package:expense_manager/provider/locale_provider.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,9 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final GlobalKey _one = GlobalKey();
+  final GlobalKey _two = GlobalKey();
+  final GlobalKey _three = GlobalKey();
+  final GlobalKey _four = GlobalKey();
   late BuildContext myContext;
   late TextEditingController emailController;
   late TextEditingController passwordController;
@@ -90,9 +94,8 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     emailController = TextEditingController();
     passwordController = TextEditingController();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ShowCaseWidget.of(myContext).startShowCase([_one]);
-    });
+    WidgetsBinding.instance.addPostFrameCallback((_) =>
+        ShowCaseWidget.of(context).startShowCase([_one, _two, _three, _four]));
     super.initState();
   }
 
@@ -280,41 +283,43 @@ class _LoginPageState extends State<LoginPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Container(
-                  width: 60.0,
-                  height: 60.0,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.red,
+                ShowCaseView(
+                  globalKey: _four,
+                  title: 'facebook',
+                  description: 'facebook',
+                  child: Container(
+                    width: 60.0,
+                    height: 60.0,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.red,
+                    ),
+                    child: Image.network(
+                        'http://pngimg.com/uploads/google/google_PNG19635.png',
+                        fit: BoxFit.cover),
                   ),
-                  child: Image.network(
-                      'http://pngimg.com/uploads/google/google_PNG19635.png',
-                      fit: BoxFit.cover),
                 ),
-                ShowCaseWidget(builder: Builder(builder: (context) {
-                  myContext = context;
-                  return Showcase(
-                    key: _one,
-                    title: 'Facebook',
-                    description: 'You can login via Facebook',
-                    child: GestureDetector(
-                      onTap: _fingerPrintAuthenticate,
-                      child: Container(
-                        width: 60.0,
-                        height: 60.0,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.blue,
-                        ),
-                        child: const Icon(
-                          Icons.facebook_outlined,
-                          color: Colors.white,
-                          size: 30.0,
-                        ),
+                ShowCaseView(
+                  globalKey: _three,
+                  title: 'facebook',
+                  description: 'facebook',
+                  child: GestureDetector(
+                    onTap: _fingerPrintAuthenticate,
+                    child: Container(
+                      width: 60.0,
+                      height: 60.0,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.blue,
+                      ),
+                      child: const Icon(
+                        Icons.facebook_outlined,
+                        color: Colors.white,
+                        size: 30.0,
                       ),
                     ),
-                  );
-                })),
+                  ),
+                ),
                 GestureDetector(
                   onTap: _fingerPrintAuthenticate,
                   child: Container(
@@ -337,30 +342,40 @@ class _LoginPageState extends State<LoginPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextButton(
-                  onPressed: () {
-                    final provider =
-                        Provider.of<LocaleProvider>(context, listen: false);
+              ShowCaseView(
+                globalKey: _one,
+                title: 'francais',
+                description: 'francais',
+                child: TextButton(
+                    onPressed: () {
+                      final provider =
+                          Provider.of<LocaleProvider>(context, listen: false);
 
-                    provider.setLocale(const Locale('fr'));
-                  },
-                  child: const Text("FRANÇAIS",
-                      style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Colors.black,
-                      ))),
-              TextButton(
-                  onPressed: () {
-                    final provider =
-                        Provider.of<LocaleProvider>(context, listen: false);
+                      provider.setLocale(const Locale('fr'));
+                    },
+                    child: const Text("FRANÇAIS",
+                        style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          color: Colors.black,
+                        ))),
+              ),
+              ShowCaseView(
+                globalKey: _two,
+                title: 'arabe',
+                description: 'arabe',
+                child: TextButton(
+                    onPressed: () {
+                      final provider =
+                          Provider.of<LocaleProvider>(context, listen: false);
 
-                    provider.setLocale(const Locale('ar'));
-                  },
-                  child: const Text("العربية",
-                      style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Colors.black,
-                      ))),
+                      provider.setLocale(const Locale('ar'));
+                    },
+                    child: const Text("العربية",
+                        style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          color: Colors.black,
+                        ))),
+              ),
               TextButton(
                   onPressed: () {
                     final provider =
