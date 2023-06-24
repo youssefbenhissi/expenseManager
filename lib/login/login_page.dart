@@ -9,6 +9,8 @@ import 'package:expense_manager/home/home_page.dart';
 import 'package:expense_manager/provider/locale_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -287,16 +289,17 @@ class _LoginPageState extends State<LoginPage> {
                   globalKey: _four,
                   title: 'facebook',
                   description: 'facebook',
-                  child: Container(
+                  child: const SizedBox(
                     width: 60.0,
                     height: 60.0,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.red,
+                    child: CircleAvatar(
+                      radius: 60.0,
+                      backgroundColor: Colors.red,
+                      child: FaIcon(
+                        FontAwesomeIcons.google,
+                        color: Colors.white,
+                      ),
                     ),
-                    child: Image.network(
-                        'http://pngimg.com/uploads/google/google_PNG19635.png',
-                        fit: BoxFit.cover),
                   ),
                 ),
                 ShowCaseView(

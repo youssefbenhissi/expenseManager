@@ -3,6 +3,8 @@ import 'package:expense_manager/login/login_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+import 'package:showcaseview/showcaseview.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -109,7 +111,11 @@ class _HomePageState extends State<HomePage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const LoginPage()),
+                              builder: (context) => ShowCaseWidget(
+                                builder: Builder(
+                                    builder: (context) => const LoginPage()),
+                              ),
+                            ),
                           );
                         },
                         leading: const Icon(
