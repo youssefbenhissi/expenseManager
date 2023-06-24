@@ -1,6 +1,10 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesHelper {
+  // ignore: constant_identifier_names
+  static const PREFERENCES_IS_FIRST_LAUNCH_STRING =
+      "PREFERENCES_IS_FIRST_LAUNCH_STRING";
+
   static late SharedPreferences _preferences;
 
   // Initialize SharedPreferences
@@ -22,6 +26,18 @@ class SharedPreferencesHelper {
     } else if (value is double) {
       await _preferences.setDouble(key, value);
     }
+  }
+
+  static Future<bool> isFirstLaunch() async {
+    await init();
+    bool isFirstLaunch =
+        _preferences.getBool(PREFERENCES_IS_FIRST_LAUNCH_STRING) ?? true;
+
+    if (isFirstLaunch) {
+      _preferences.setBool(PREFERENCES_IS_FIRST_LAUNCH_STRING, false);
+    }
+
+    return isFirstLaunch;
   }
 
   // Retrieve a value from SharedPreferences

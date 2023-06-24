@@ -4,12 +4,12 @@ import 'dart:async';
 
 import 'package:expense_manager/app_page_injectable.dart';
 import 'package:expense_manager/common/popup_notification.dart';
+import 'package:expense_manager/common/shared_preferences_helper.dart';
 import 'package:expense_manager/common/show_case_widget.dart';
 import 'package:expense_manager/home/home_page.dart';
 import 'package:expense_manager/provider/locale_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:provider/provider.dart';
@@ -96,8 +96,14 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     emailController = TextEditingController();
     passwordController = TextEditingController();
-    WidgetsBinding.instance.addPostFrameCallback((_) =>
-        ShowCaseWidget.of(context).startShowCase([_one, _two, _three, _four]));
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      SharedPreferencesHelper.isFirstLaunch().then((result) {
+        if (result) {
+          ShowCaseWidget.of(context).startShowCase([_one, _two, _three, _four]);
+        }
+      });
+    });
+
     super.initState();
   }
 
