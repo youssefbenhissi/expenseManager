@@ -1,3 +1,4 @@
+import 'package:expense_manager/app_page_injectable.dart';
 import 'package:expense_manager/settings/constants.dart';
 import 'package:expense_manager/settings/models/setting.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,7 +14,9 @@ class SettingTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {}, // Navigation
+      onTap: () {
+        context.gNavigationService.openFaq(context);
+      }, // Navigation
       child: Row(
         children: [
           Container(

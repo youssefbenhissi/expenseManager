@@ -18,4 +18,13 @@ class NavigationService {
       ModalRoute.withName('/'),
     );
   }
+
+  Future<void> openFaq(
+    BuildContext context,
+  ) {
+    return Navigator.of(context).pushNamedAndRemoveUntil(
+      _faqPageRouteName,
+      ModalRoute.withName('/'),
+    );
+  }
 }

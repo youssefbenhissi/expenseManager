@@ -1,3 +1,4 @@
+import 'package:expense_manager/FAQ/faq_page.dart';
 import 'package:expense_manager/app_routes_factory.dart';
 import 'package:expense_manager/navigation/navigation.dart';
 import 'package:expense_manager/services/service_locator.dart';

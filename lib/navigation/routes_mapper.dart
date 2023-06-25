@@ -9,6 +9,8 @@ Route<dynamic>? Function(RouteSettings settings) onGenerateAppRoute(
         return routesFactory.createHomePageRoute();
       case _settingsPageRouteName:
         return routesFactory.createSettingsPageRoute();
+      case _faqPageRouteName:
+        return routesFactory.createFaqPageRoute();
       default:
         return null;
     }
