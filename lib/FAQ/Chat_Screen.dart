@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_tawk/flutter_tawk.dart';
 import 'package:lottie/lottie.dart';
+import 'package:flutter/material.dart';
 
 class ChatScreen extends StatefulWidget {
   final String email;
@@ -32,12 +32,6 @@ class _ChatScreenState extends State<ChatScreen> {
           name: widget.name,
           email: widget.email,
         ),
-        onLoad: () {
-          print('it works WiiiiW!');
-        },
-        onLinkTap: (String url) {
-          print(url);
-        },
         placeholder: Center(
           child: Lottie.asset(
             'assets/lottie/chatsupport.json',

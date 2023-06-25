@@ -9,11 +9,11 @@ import 'package:getwidget/getwidget.dart';
 
 class FaqPage extends StatefulWidget {
   @override
-  _FaqPageState createState() => _FaqPageState();
+  FaqPageState createState() => FaqPageState();
 }
 
-class _FaqPageState extends State<FaqPage> {
-  Color darkGrey = Color(0xff202020);
+class FaqPageState extends State<FaqPage> {
+  Color darkGrey = const Color(0xff202020);
   List<Panel> panels = [
     Panel(
         'Do you accept orders through VOIP?',
@@ -44,14 +44,8 @@ class _FaqPageState extends State<FaqPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.white,
       appBar: AppBar(
-        // iconTheme: IconThemeData(
-        //   color: Colors.black,
-        // ),
-
-        //backgroundColor: Colors.transparent,
-        title: Text(
+        title: const Text(
           'Settings',
           style: TextStyle(),
         ),
@@ -62,11 +56,10 @@ class _FaqPageState extends State<FaqPage> {
         child: Padding(
           padding: const EdgeInsets.only(top: 24.0),
           child: ListView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(
-                    left: 24.0, right: 24.0, bottom: 16.0),
+              const Padding(
+                padding: EdgeInsets.only(left: 24.0, right: 24.0, bottom: 16.0),
                 child: Text(
                   'FAQ',
                   style: TextStyle(
@@ -86,15 +79,15 @@ class _FaqPageState extends State<FaqPage> {
                           ),
                           children: [
                             Container(
-                                padding: EdgeInsets.all(16.0),
-                                color: Color(0xffFAF1E2),
+                                padding: const EdgeInsets.all(16.0),
+                                color: const Color(0xffFAF1E2),
                                 child: Text(panel.content,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         color: Colors.grey, fontSize: 12)))
                           ]))
                   .toList(),
-              Padding(
-                padding: const EdgeInsets.only(
+              const Padding(
+                padding: EdgeInsets.only(
                     left: 24.0, right: 24.0, bottom: 16.0, top: 16),
                 child: Text(
                   "Contact US",
@@ -107,34 +100,34 @@ class _FaqPageState extends State<FaqPage> {
               SizedBox(
                   height: Get.height / 7,
                   child: GridView.count(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       crossAxisSpacing: 5,
-                      physics: BouncingScrollPhysics(),
+                      physics: const BouncingScrollPhysics(),
                       crossAxisCount: 5,
                       mainAxisSpacing: 5,
                       children: [
                         GFIconButton(
                           onPressed: () {},
                           color: Colors.green,
-                          icon: Icon(Icons.phone),
+                          icon: const Icon(Icons.phone),
                           size: GFSize.SMALL,
                         ),
                         GFIconButton(
                           onPressed: () {},
                           color: Colors.red,
-                          icon: Icon(Icons.email),
+                          icon: const Icon(Icons.email),
                           size: GFSize.SMALL,
                         ),
                         GFIconButton(
                           onPressed: () {},
                           color: Colors.blue,
-                          icon: Icon(FontAwesomeIcons.facebookMessenger),
+                          icon: const Icon(FontAwesomeIcons.facebookMessenger),
                           size: GFSize.SMALL,
                         ),
                         GFIconButton(
                           onPressed: () {},
                           color: Colors.green,
-                          icon: Icon(Icons.whatshot),
+                          icon: const Icon(Icons.whatshot),
                           size: GFSize.SMALL,
                         ),
                         GFIconButton(
@@ -142,20 +135,20 @@ class _FaqPageState extends State<FaqPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => ChatScreen(
+                                  builder: (context) => const ChatScreen(
                                         email: "iheb@gmail.com",
                                         name: "iheb",
                                       )),
                             );
                           },
                           color: Colors.orange,
-                          icon: Icon(Icons.whatshot),
+                          icon: const Icon(Icons.whatshot),
                           size: GFSize.SMALL,
                         ),
                       ])),
               GFIconButton(
                 onPressed: () {},
-                icon: Icon(Icons.share),
+                icon: const Icon(Icons.share),
                 size: GFSize.SMALL,
               ),
             ],

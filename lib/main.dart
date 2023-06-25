@@ -1,8 +1,6 @@
-import 'package:expense_manager/FAQ/faq_page.dart';
 import 'package:expense_manager/app_routes_factory.dart';
 import 'package:expense_manager/navigation/navigation.dart';
 import 'package:expense_manager/services/service_locator.dart';
-import 'package:expense_manager/settings/settings_page.dart';
 import 'package:expense_manager/theme/dark_theme.dart';
 import 'package:expense_manager/theme/light_theme.dart';
 import 'package:flutter/material.dart';

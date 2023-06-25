@@ -14,9 +14,7 @@ class SharedPreferencesHelper {
 
   // Store a value in SharedPreferences
   static Future<void> setValue(String key, dynamic value) async {
-    if (_preferences == null) {
-      await init();
-    }
+    await init();
     if (value is String) {
       await _preferences.setString(key, value);
     } else if (value is int) {
@@ -42,9 +40,6 @@ class SharedPreferencesHelper {
 
   // Retrieve a value from SharedPreferences
   static dynamic getValue(String key) {
-    if (_preferences == null) {
-      throw Exception('SharedPreferences has not been initialized');
-    }
     return _preferences.get(key);
   }
 }
