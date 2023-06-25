@@ -15,7 +15,7 @@ class SettingTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.gNavigationService.openFaq(context);
+        context.gNavigationService.openAccountProfile(context);
       }, // Navigation
       child: SizedBox(
         child: Row(

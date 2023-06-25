@@ -1,5 +1,5 @@
 // import 'package:easy_localization/easy_localization.dart';
-import 'package:expense_manager/FAQ/Chat_Screen.dart';
+import 'package:expense_manager/settings/FAQ/Chat_Screen.dart';
 import 'package:flutter/material.dart';
 // import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

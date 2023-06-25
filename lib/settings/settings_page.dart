@@ -39,8 +39,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     Positioned(
                       bottom: 0,
-                      right :0,
-
+                      right: 0,
                       child: Container(
                         width: 35,
                         height: 35,

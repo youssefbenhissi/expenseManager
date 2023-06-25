@@ -27,4 +27,13 @@ class NavigationService {
       ModalRoute.withName('/'),
     );
   }
+
+  Future<void> openAccountProfile(
+    BuildContext context,
+  ) {
+    return Navigator.of(context).pushNamedAndRemoveUntil(
+      _accountProfilePageRouteName,
+      ModalRoute.withName('/'),
+    );
+  }
 }

@@ -1,4 +1,4 @@
-import 'package:expense_manager/FAQ/faq_page.dart';
+import 'package:expense_manager/settings/FAQ/faq_page.dart';
 import 'package:flutter/material.dart';
 
 class FaqPageRouteBuilder {

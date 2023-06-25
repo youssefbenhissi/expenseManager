@@ -1,5 +1,6 @@
-import 'package:expense_manager/FAQ/faq_page_route_builder.dart';
+import 'package:expense_manager/settings/FAQ/faq_page_route_builder.dart';
 import 'package:expense_manager/home/home_page_route_builder.dart';
+import 'package:expense_manager/settings/account_profile/account_profile_page_route_builder.dart';
 import 'package:expense_manager/settings/settings_page_route_builder.dart';
 import 'package:flutter/material.dart';
 import 'navigation/navigation.dart';
@@ -25,6 +26,13 @@ class AppRoutesFactory extends RoutesFactory {
   Route<dynamic> createFaqPageRoute() {
     return MaterialPageRoute(
       builder: FaqPageRouteBuilder(),
+    );
+  }
+
+  @override
+  Route<dynamic> createAccountProfilePageRoute() {
+    return MaterialPageRoute(
+      builder: AccountProfilePageRouteBuilder(),
     );
   }
 }

@@ -52,9 +52,4 @@ final List<Setting> settings2 = [
     route: "/",
     icon: CupertinoIcons.person_3_fill,
   ),
-  Setting(
-    title: "Logout",
-    route: "/",
-    icon: Icons.logout,
-  ),
 ];
