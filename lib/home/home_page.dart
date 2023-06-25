@@ -1,4 +1,5 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:expense_manager/app_page_injectable.dart';
 import 'package:expense_manager/login/login_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
@@ -96,7 +97,9 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       ListTile(
-                        onTap: () {},
+                        onTap: () {
+                          context.gNavigationService.openSettings(context);
+                        },
                         leading: const Icon(
                           Icons.settings,
                           color: Colors.black,

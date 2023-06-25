@@ -7,6 +7,8 @@ Route<dynamic>? Function(RouteSettings settings) onGenerateAppRoute(
     switch (settings.name) {
       case _homePageRouteName:
         return routesFactory.createHomePageRoute();
+      case _settingsPageRouteName:
+        return routesFactory.createSettingsPageRoute();
       default:
         return null;
     }

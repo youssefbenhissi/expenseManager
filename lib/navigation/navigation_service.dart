@@ -9,4 +9,13 @@ class NavigationService {
       ModalRoute.withName('/'),
     );
   }
+
+  Future<void> openSettings(
+    BuildContext context,
+  ) {
+    return Navigator.of(context).pushNamedAndRemoveUntil(
+      _settingsPageRouteName,
+      ModalRoute.withName('/'),
+    );
+  }
 }
