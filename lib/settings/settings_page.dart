@@ -1,6 +1,7 @@
-import 'package:expense_manager/settings/models/setting.dart';
-import 'package:expense_manager/settings/widgets/setting_tile.dart';
+import 'package:expense_manager/app_page_injectable.dart';
+import 'package:expense_manager/settings/constants.dart';
 import 'package:expense_manager/settings/widgets/support_card.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -64,7 +65,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 SizedBox(
                   width: 200,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.gNavigationService.openAccountProfile(context);
+                    },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.yellow,
                         side: BorderSide.none,
@@ -78,20 +81,272 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 const SizedBox(height: 20),
                 const Divider(),
                 const SizedBox(height: 20),
-                Column(
-                  children: List.generate(
-                    settings.length,
-                    (index) => SettingTile(setting: settings[index]),
+                Column(children: [
+                  GestureDetector(
+                    onTap: () {
+                      context.gNavigationService.openAccountProfile(context);
+                    }, // Navigation
+                    child: SizedBox(
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 50,
+                            width: 50,
+                            margin: const EdgeInsets.only(bottom: 10),
+                            decoration: BoxDecoration(
+                              color: klightContentColor,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: const Icon(
+                                CupertinoIcons.person_fill,
+                                color: kprimaryColor),
+                          ),
+                          const SizedBox(width: 10),
+                          const Text(
+                            "Personal Data",
+                            style: TextStyle(
+                              color: kprimaryColor,
+                              fontSize: ksmallFontSize,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const Spacer(),
+                          Icon(
+                            CupertinoIcons.chevron_forward,
+                            color: Colors.grey.shade600,
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
+                  GestureDetector(
+                    onTap: () {
+                      context.gNavigationService.openFaq(context);
+                    }, // Navigation
+                    child: SizedBox(
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 50,
+                            width: 50,
+                            margin: const EdgeInsets.only(bottom: 10),
+                            decoration: BoxDecoration(
+                              color: klightContentColor,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: const Icon(
+                                CupertinoIcons.settings,
+                                color: kprimaryColor),
+                          ),
+                          const SizedBox(width: 10),
+                          const Text(
+                            "Settings",
+                            style: TextStyle(
+                              color: kprimaryColor,
+                              fontSize: ksmallFontSize,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const Spacer(),
+                          Icon(
+                            CupertinoIcons.chevron_forward,
+                            color: Colors.grey.shade600,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      context.gNavigationService.openFaq(context);
+                    }, // Navigation
+                    child: SizedBox(
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 50,
+                            width: 50,
+                            margin: const EdgeInsets.only(bottom: 10),
+                            decoration: BoxDecoration(
+                              color: klightContentColor,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: const Icon(
+                                CupertinoIcons.doc_fill,
+                                color: kprimaryColor),
+                          ),
+                          const SizedBox(width: 10),
+                          const Text(
+                            "E-Statements",
+                            style: TextStyle(
+                              color: kprimaryColor,
+                              fontSize: ksmallFontSize,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const Spacer(),
+                          Icon(
+                            CupertinoIcons.chevron_forward,
+                            color: Colors.grey.shade600,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      context.gNavigationService.openFaq(context);
+                    }, // Navigation
+                    child: SizedBox(
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 50,
+                            width: 50,
+                            margin: const EdgeInsets.only(bottom: 10),
+                            decoration: BoxDecoration(
+                              color: klightContentColor,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: const Icon(
+                                CupertinoIcons.heart_fill,
+                                color: kprimaryColor),
+                          ),
+                          const SizedBox(width: 10),
+                          const Text(
+                            "Refferal Code",
+                            style: TextStyle(
+                              color: kprimaryColor,
+                              fontSize: ksmallFontSize,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const Spacer(),
+                          Icon(
+                            CupertinoIcons.chevron_forward,
+                            color: Colors.grey.shade600,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ]),
                 const SizedBox(height: 10),
                 const Divider(),
                 const SizedBox(height: 10),
                 Column(
-                  children: List.generate(
-                    settings2.length,
-                    (index) => SettingTile(setting: settings2[index]),
-                  ),
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        context.gNavigationService.openFaq(context);
+                      }, // Navigation
+                      child: SizedBox(
+                        child: Row(
+                          children: [
+                            Container(
+                              height: 50,
+                              width: 50,
+                              margin: const EdgeInsets.only(bottom: 10),
+                              decoration: BoxDecoration(
+                                color: klightContentColor,
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: const Icon(
+                                  CupertinoIcons.ellipsis_vertical_circle_fill,
+                                  color: kprimaryColor),
+                            ),
+                            const SizedBox(width: 10),
+                            const Text(
+                              "FAQ",
+                              style: TextStyle(
+                                color: kprimaryColor,
+                                fontSize: ksmallFontSize,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const Spacer(),
+                            Icon(
+                              CupertinoIcons.chevron_forward,
+                              color: Colors.grey.shade600,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        context.gNavigationService.openAccountProfile(context);
+                      }, // Navigation
+                      child: SizedBox(
+                        child: Row(
+                          children: [
+                            Container(
+                              height: 50,
+                              width: 50,
+                              margin: const EdgeInsets.only(bottom: 10),
+                              decoration: BoxDecoration(
+                                color: klightContentColor,
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: const Icon(
+                                  CupertinoIcons.pencil_circle_fill,
+                                  color: kprimaryColor),
+                            ),
+                            const SizedBox(width: 10),
+                            const Text(
+                              "Our Handbook",
+                              style: TextStyle(
+                                color: kprimaryColor,
+                                fontSize: ksmallFontSize,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const Spacer(),
+                            Icon(
+                              CupertinoIcons.chevron_forward,
+                              color: Colors.grey.shade600,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        context.gNavigationService.openAccountProfile(context);
+                      }, // Navigation
+                      child: SizedBox(
+                        child: Row(
+                          children: [
+                            Container(
+                              height: 50,
+                              width: 50,
+                              margin: const EdgeInsets.only(bottom: 10),
+                              decoration: BoxDecoration(
+                                color: klightContentColor,
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: const Icon(CupertinoIcons.person_3_fill,
+                                  color: kprimaryColor),
+                            ),
+                            const SizedBox(width: 10),
+                            const Text(
+                              "Community",
+                              style: TextStyle(
+                                color: kprimaryColor,
+                                fontSize: ksmallFontSize,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const Spacer(),
+                            Icon(
+                              CupertinoIcons.chevron_forward,
+                              color: Colors.grey.shade600,
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
                 ),
                 const SizedBox(height: 20),
                 const SupportCard()
