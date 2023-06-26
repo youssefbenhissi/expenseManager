@@ -1,6 +1,6 @@
 // import 'package:easy_localization/easy_localization.dart';
 import 'package:expense_manager/app_page_injectable.dart';
-import 'package:expense_manager/settings/FAQ/Chat_Screen.dart';
+import 'package:expense_manager/settings/FAQ/chat_Screen.dart';
 import 'package:flutter/material.dart';
 // import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -9,6 +9,7 @@ import 'package:getwidget/getwidget.dart';
 // import 'package:pim/screens/profile/components/Chat_Screen.dart';
 
 class FaqPage extends StatefulWidget {
+  const FaqPage({super.key});
   @override
   FaqPageState createState() => FaqPageState();
 }

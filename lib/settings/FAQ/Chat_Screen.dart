@@ -1,17 +1,17 @@
-import 'package:flutter_tawk/flutter_tawk.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tawk/flutter_tawk.dart';
 
 class ChatScreen extends StatefulWidget {
   final String email;
   final String name;
-  const ChatScreen({required this.email, required this.name});
+  const ChatScreen({super.key, required this.email, required this.name});
 
   @override
-  _ChatScreenState createState() => _ChatScreenState();
+  ChatScreenState createState() => ChatScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
     super.initState();
@@ -21,7 +21,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Support'),
+        title: const Text('Support'),
         backgroundColor: const Color(0XFFF7931E),
         elevation: 0,
       ),

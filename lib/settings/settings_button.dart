@@ -8,6 +8,7 @@ class CustomListTile extends StatelessWidget {
   final IconData trailingIcon;
 
   const CustomListTile({
+    super.key,
     required this.title,
     required this.onTap,
     required this.leadingIcon,

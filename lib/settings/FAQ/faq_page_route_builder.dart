@@ -5,6 +5,6 @@ class FaqPageRouteBuilder {
   FaqPageRouteBuilder();
 
   Widget call(BuildContext context) {
-    return FaqPage();
+    return const FaqPage();
   }
 }

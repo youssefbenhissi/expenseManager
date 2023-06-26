@@ -61,9 +61,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ],
                 ),
                 const SizedBox(height: 10),
-                Text("youssef", style: Theme.of(context).textTheme.headline4),
+                Text("youssef",
+                    style: Theme.of(context).textTheme.headlineMedium),
                 Text("youssef.benhissi@esprit.tn",
-                    style: Theme.of(context).textTheme.bodyText2),
+                    style: Theme.of(context).textTheme.bodyMedium),
                 const SizedBox(height: 20),
                 SizedBox(
                   width: 200,
@@ -96,7 +97,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   CustomListTile(
                     title: "Settings",
                     onTap: () {
-                      context.gNavigationService.openFaq(context);
+                      context.gNavigationService
+                          .openApplicationSettings(context);
                     },
                     leadingIcon: CupertinoIcons.settings,
                     trailingIcon: CupertinoIcons.chevron_forward,
