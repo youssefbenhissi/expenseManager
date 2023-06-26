@@ -31,8 +31,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         _image = img;
         Navigator.of(context).pop();
       });
-    } on PlatformException catch (e) {
-      print(e);
+    } on PlatformException {
       Navigator.of(context).pop();
     }
   }
