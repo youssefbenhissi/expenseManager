@@ -1,5 +1,6 @@
 import 'package:expense_manager/app_page_injectable.dart';
 import 'package:expense_manager/settings/constants.dart';
+import 'package:expense_manager/settings/settings_button.dart';
 import 'package:expense_manager/settings/widgets/support_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -82,153 +83,37 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 const Divider(),
                 const SizedBox(height: 20),
                 Column(children: [
-                  GestureDetector(
+                  CustomListTile(
+                    title: "Personal Data",
                     onTap: () {
                       context.gNavigationService.openAccountProfile(context);
-                    }, // Navigation
-                    child: SizedBox(
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 50,
-                            width: 50,
-                            margin: const EdgeInsets.only(bottom: 10),
-                            decoration: BoxDecoration(
-                              color: klightContentColor,
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: const Icon(
-                                CupertinoIcons.person_fill,
-                                color: kprimaryColor),
-                          ),
-                          const SizedBox(width: 10),
-                          const Text(
-                            "Personal Data",
-                            style: TextStyle(
-                              color: kprimaryColor,
-                              fontSize: ksmallFontSize,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const Spacer(),
-                          Icon(
-                            CupertinoIcons.chevron_forward,
-                            color: Colors.grey.shade600,
-                          ),
-                        ],
-                      ),
-                    ),
+                    },
+                    leadingIcon: CupertinoIcons.person_fill,
+                    trailingIcon: CupertinoIcons.chevron_forward,
                   ),
-                  GestureDetector(
+                  CustomListTile(
+                    title: "Settings",
                     onTap: () {
                       context.gNavigationService.openFaq(context);
-                    }, // Navigation
-                    child: SizedBox(
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 50,
-                            width: 50,
-                            margin: const EdgeInsets.only(bottom: 10),
-                            decoration: BoxDecoration(
-                              color: klightContentColor,
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: const Icon(
-                                CupertinoIcons.settings,
-                                color: kprimaryColor),
-                          ),
-                          const SizedBox(width: 10),
-                          const Text(
-                            "Settings",
-                            style: TextStyle(
-                              color: kprimaryColor,
-                              fontSize: ksmallFontSize,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const Spacer(),
-                          Icon(
-                            CupertinoIcons.chevron_forward,
-                            color: Colors.grey.shade600,
-                          ),
-                        ],
-                      ),
-                    ),
+                    },
+                    leadingIcon: CupertinoIcons.settings,
+                    trailingIcon: CupertinoIcons.chevron_forward,
                   ),
-                  GestureDetector(
+                  CustomListTile(
+                    title: "E-Statements",
                     onTap: () {
                       context.gNavigationService.openFaq(context);
-                    }, // Navigation
-                    child: SizedBox(
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 50,
-                            width: 50,
-                            margin: const EdgeInsets.only(bottom: 10),
-                            decoration: BoxDecoration(
-                              color: klightContentColor,
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: const Icon(
-                                CupertinoIcons.doc_fill,
-                                color: kprimaryColor),
-                          ),
-                          const SizedBox(width: 10),
-                          const Text(
-                            "E-Statements",
-                            style: TextStyle(
-                              color: kprimaryColor,
-                              fontSize: ksmallFontSize,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const Spacer(),
-                          Icon(
-                            CupertinoIcons.chevron_forward,
-                            color: Colors.grey.shade600,
-                          ),
-                        ],
-                      ),
-                    ),
+                    },
+                    leadingIcon: CupertinoIcons.doc_fill,
+                    trailingIcon: CupertinoIcons.chevron_forward,
                   ),
-                  GestureDetector(
+                  CustomListTile(
+                    title: "Refferal Code",
                     onTap: () {
                       context.gNavigationService.openFaq(context);
-                    }, // Navigation
-                    child: SizedBox(
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 50,
-                            width: 50,
-                            margin: const EdgeInsets.only(bottom: 10),
-                            decoration: BoxDecoration(
-                              color: klightContentColor,
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: const Icon(
-                                CupertinoIcons.heart_fill,
-                                color: kprimaryColor),
-                          ),
-                          const SizedBox(width: 10),
-                          const Text(
-                            "Refferal Code",
-                            style: TextStyle(
-                              color: kprimaryColor,
-                              fontSize: ksmallFontSize,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const Spacer(),
-                          Icon(
-                            CupertinoIcons.chevron_forward,
-                            color: Colors.grey.shade600,
-                          ),
-                        ],
-                      ),
-                    ),
+                    },
+                    leadingIcon: CupertinoIcons.heart_fill,
+                    trailingIcon: CupertinoIcons.chevron_forward,
                   ),
                 ]),
                 const SizedBox(height: 10),
@@ -236,116 +121,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 const SizedBox(height: 10),
                 Column(
                   children: [
-                    GestureDetector(
+                    CustomListTile(
+                      title: "FAQ",
                       onTap: () {
                         context.gNavigationService.openFaq(context);
-                      }, // Navigation
-                      child: SizedBox(
-                        child: Row(
-                          children: [
-                            Container(
-                              height: 50,
-                              width: 50,
-                              margin: const EdgeInsets.only(bottom: 10),
-                              decoration: BoxDecoration(
-                                color: klightContentColor,
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              child: const Icon(
-                                  CupertinoIcons.ellipsis_vertical_circle_fill,
-                                  color: kprimaryColor),
-                            ),
-                            const SizedBox(width: 10),
-                            const Text(
-                              "FAQ",
-                              style: TextStyle(
-                                color: kprimaryColor,
-                                fontSize: ksmallFontSize,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const Spacer(),
-                            Icon(
-                              CupertinoIcons.chevron_forward,
-                              color: Colors.grey.shade600,
-                            ),
-                          ],
-                        ),
-                      ),
+                      },
+                      leadingIcon: CupertinoIcons.ellipsis_vertical_circle_fill,
+                      trailingIcon: CupertinoIcons.chevron_forward,
                     ),
-                    GestureDetector(
+                    CustomListTile(
+                      title: "Our Handbook",
                       onTap: () {
                         context.gNavigationService.openAccountProfile(context);
-                      }, // Navigation
-                      child: SizedBox(
-                        child: Row(
-                          children: [
-                            Container(
-                              height: 50,
-                              width: 50,
-                              margin: const EdgeInsets.only(bottom: 10),
-                              decoration: BoxDecoration(
-                                color: klightContentColor,
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              child: const Icon(
-                                  CupertinoIcons.pencil_circle_fill,
-                                  color: kprimaryColor),
-                            ),
-                            const SizedBox(width: 10),
-                            const Text(
-                              "Our Handbook",
-                              style: TextStyle(
-                                color: kprimaryColor,
-                                fontSize: ksmallFontSize,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const Spacer(),
-                            Icon(
-                              CupertinoIcons.chevron_forward,
-                              color: Colors.grey.shade600,
-                            ),
-                          ],
-                        ),
-                      ),
+                      },
+                      leadingIcon: CupertinoIcons.pencil_circle_fill,
+                      trailingIcon: CupertinoIcons.chevron_forward,
                     ),
-                    GestureDetector(
+                    CustomListTile(
+                      title: "Community",
                       onTap: () {
                         context.gNavigationService.openAccountProfile(context);
-                      }, // Navigation
-                      child: SizedBox(
-                        child: Row(
-                          children: [
-                            Container(
-                              height: 50,
-                              width: 50,
-                              margin: const EdgeInsets.only(bottom: 10),
-                              decoration: BoxDecoration(
-                                color: klightContentColor,
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              child: const Icon(CupertinoIcons.person_3_fill,
-                                  color: kprimaryColor),
-                            ),
-                            const SizedBox(width: 10),
-                            const Text(
-                              "Community",
-                              style: TextStyle(
-                                color: kprimaryColor,
-                                fontSize: ksmallFontSize,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const Spacer(),
-                            Icon(
-                              CupertinoIcons.chevron_forward,
-                              color: Colors.grey.shade600,
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
+                      },
+                      leadingIcon: CupertinoIcons.person_3_fill,
+                      trailingIcon: CupertinoIcons.chevron_forward,
+                    ),
                   ],
                 ),
                 const SizedBox(height: 20),
