@@ -1,3 +1,4 @@
+import 'package:expense_manager/app_page_injectable.dart';
 import 'package:flutter/material.dart';
 
 class UpdateProfile extends StatefulWidget {
@@ -12,8 +13,9 @@ class _UpdateProfileState extends State<UpdateProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading:
-            IconButton(onPressed: () => {}, icon: const Icon(Icons.arrow_back)),
+        leading: IconButton(
+            onPressed: () => {context.gNavigationService.openSettings(context)},
+            icon: const Icon(Icons.arrow_back)),
         title: const Text(
           "Edit Profile",
           style: TextStyle(color: Colors.black),

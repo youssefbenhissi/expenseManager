@@ -1,4 +1,5 @@
 // import 'package:easy_localization/easy_localization.dart';
+import 'package:expense_manager/app_page_injectable.dart';
 import 'package:expense_manager/settings/FAQ/Chat_Screen.dart';
 import 'package:flutter/material.dart';
 // import 'package:fluttericon/font_awesome_icons.dart';
@@ -45,9 +46,10 @@ class FaqPageState extends State<FaqPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Settings',
-          style: TextStyle(),
+        title: const Text("Settings"),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => context.gNavigationService.openSettings(context),
         ),
         elevation: 0,
       ),
