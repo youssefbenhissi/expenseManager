@@ -5,6 +5,6 @@ class ApplicationSettingsPageRouteBuilder {
   ApplicationSettingsPageRouteBuilder();
 
   Widget call(BuildContext context) {
-    return ApplicationSettingsPage();
+    return const ApplicationSettingsPage();
   }
 }
