@@ -54,4 +54,13 @@ class NavigationService {
       ModalRoute.withName('/'),
     );
   }
+
+  Future<void> openContactUsScreen(
+    BuildContext context,
+  ) {
+    return Navigator.of(context).pushNamedAndRemoveUntil(
+      _contactUsPageRouteName,
+      ModalRoute.withName('/'),
+    );
+  }
 }

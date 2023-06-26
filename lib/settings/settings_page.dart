@@ -141,9 +141,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       trailingIcon: CupertinoIcons.chevron_forward,
                     ),
                     CustomListTile(
-                      title: "Community",
+                      title: "Contact Us",
                       onTap: () {
-                        context.gNavigationService.openAccountProfile(context);
+                        context.gNavigationService.openContactUsScreen(context);
                       },
                       leadingIcon: CupertinoIcons.person_3_fill,
                       trailingIcon: CupertinoIcons.chevron_forward,

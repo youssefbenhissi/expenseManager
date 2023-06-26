@@ -6,3 +6,4 @@ const _faqPageRouteName = '/faq';
 const _accountProfilePageRouteName = '/accountProfile';
 const _applicationSettingsPageRouteName = '/applicationSettings';
 const _chatScreenPageRouteName = '/chatScreen';
+const _contactUsPageRouteName = '/contactUsScreen';

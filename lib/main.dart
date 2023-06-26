@@ -1,6 +1,7 @@
 import 'package:expense_manager/app_routes_factory.dart';
 import 'package:expense_manager/navigation/navigation.dart';
 import 'package:expense_manager/services/service_locator.dart';
+import 'package:expense_manager/settings/contact_us/contact_us_page.dart';
 import 'package:expense_manager/theme/dark_theme.dart';
 import 'package:expense_manager/theme/light_theme.dart';
 import 'package:flutter/material.dart';
@@ -56,7 +57,7 @@ class _MyAppState extends State<MyApp> {
             ],
             locale: provider.locale,
             home: ShowCaseWidget(
-              builder: Builder(builder: (context) => const LoginPage()),
+              builder: Builder(builder: (context) => const ContactUsPage()),
             ),
           ),
         );
