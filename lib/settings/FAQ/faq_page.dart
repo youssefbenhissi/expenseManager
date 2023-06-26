@@ -103,10 +103,10 @@ class FaqPageState extends State<FaqPage> {
                   height: height / 7,
                   child: GridView.count(
                       padding: const EdgeInsets.all(10),
-                      crossAxisSpacing: 5,
+                      crossAxisSpacing: 4,
                       physics: const BouncingScrollPhysics(),
-                      crossAxisCount: 5,
-                      mainAxisSpacing: 5,
+                      crossAxisCount: 4,
+                      mainAxisSpacing: 4,
                       children: [
                         GFIconButton(
                           onPressed: () {},
