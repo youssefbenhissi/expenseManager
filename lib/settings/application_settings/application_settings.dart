@@ -14,6 +14,10 @@ class ApplicationSettingsPageState extends State<ApplicationSettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text(
+          "Application Settings",
+          style: TextStyle(color: Colors.black),
+        ),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 1,
         leading: IconButton(
@@ -22,7 +26,7 @@ class ApplicationSettingsPageState extends State<ApplicationSettingsPage> {
           },
           icon: const Icon(
             Icons.arrow_back,
-            color: Colors.green,
+            color: Colors.black,
           ),
         ),
       ),
@@ -30,10 +34,6 @@ class ApplicationSettingsPageState extends State<ApplicationSettingsPage> {
         padding: const EdgeInsets.only(left: 16, top: 25, right: 16),
         child: ListView(
           children: [
-            const Text(
-              "Settings",
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
-            ),
             const SizedBox(
               height: 40,
             ),
@@ -95,14 +95,6 @@ class ApplicationSettingsPageState extends State<ApplicationSettingsPage> {
             const SizedBox(
               height: 50,
             ),
-            Center(
-              child: OutlinedButton(
-                onPressed: () {},
-                child: const Text("SIGN OUT",
-                    style: TextStyle(
-                        fontSize: 16, letterSpacing: 2.2, color: Colors.black)),
-              ),
-            )
           ],
         ),
       ),
