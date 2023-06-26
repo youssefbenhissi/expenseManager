@@ -15,6 +15,8 @@ Route<dynamic>? Function(RouteSettings settings) onGenerateAppRoute(
         return routesFactory.createAccountProfilePageRoute();
       case _applicationSettingsPageRouteName:
         return routesFactory.createApplicationSettingsPageRoute();
+      case _chatScreenPageRouteName:
+        return routesFactory.createChatScreenPageRoute();
       default:
         return null;
     }

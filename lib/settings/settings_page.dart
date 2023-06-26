@@ -2,7 +2,6 @@ import 'package:expense_manager/app_page_injectable.dart';
 import 'package:expense_manager/login/login_page.dart';
 import 'package:expense_manager/settings/constants.dart';
 import 'package:expense_manager/settings/settings_button.dart';
-import 'package:expense_manager/settings/widgets/support_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:showcaseview/showcaseview.dart';
@@ -134,11 +133,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       trailingIcon: CupertinoIcons.chevron_forward,
                     ),
                     CustomListTile(
-                      title: "Our Handbook",
+                      title: "Support",
                       onTap: () {
-                        context.gNavigationService.openAccountProfile(context);
+                        context.gNavigationService.openChatScreen(context);
                       },
-                      leadingIcon: CupertinoIcons.pencil_circle_fill,
+                      leadingIcon: Icons.support_agent,
                       trailingIcon: CupertinoIcons.chevron_forward,
                     ),
                     CustomListTile(
@@ -189,8 +188,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     )
                   ],
                 ),
-                const SizedBox(height: 20),
-                const SupportCard()
               ],
             ),
           ),

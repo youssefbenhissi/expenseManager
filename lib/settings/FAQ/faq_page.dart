@@ -1,6 +1,5 @@
 // import 'package:easy_localization/easy_localization.dart';
 import 'package:expense_manager/app_page_injectable.dart';
-import 'package:expense_manager/settings/FAQ/chat_Screen.dart';
 import 'package:flutter/material.dart';
 // import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -130,21 +129,6 @@ class FaqPageState extends State<FaqPage> {
                         GFIconButton(
                           onPressed: () {},
                           color: Colors.green,
-                          icon: const Icon(Icons.whatshot),
-                          size: GFSize.SMALL,
-                        ),
-                        GFIconButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const ChatScreen(
-                                        email: "iheb@gmail.com",
-                                        name: "iheb",
-                                      )),
-                            );
-                          },
-                          color: Colors.orange,
                           icon: const Icon(Icons.whatshot),
                           size: GFSize.SMALL,
                         ),

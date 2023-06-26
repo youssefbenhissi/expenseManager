@@ -6,4 +6,5 @@ abstract class RoutesFactory {
   Route<dynamic> createFaqPageRoute();
   Route<dynamic> createAccountProfilePageRoute();
   Route<dynamic> createApplicationSettingsPageRoute();
+  Route<dynamic> createChatScreenPageRoute();
 }

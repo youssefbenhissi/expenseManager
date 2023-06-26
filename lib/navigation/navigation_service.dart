@@ -45,4 +45,13 @@ class NavigationService {
       ModalRoute.withName('/'),
     );
   }
+
+  Future<void> openChatScreen(
+    BuildContext context,
+  ) {
+    return Navigator.of(context).pushNamedAndRemoveUntil(
+      _chatScreenPageRouteName,
+      ModalRoute.withName('/'),
+    );
+  }
 }

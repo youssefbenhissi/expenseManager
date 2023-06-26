@@ -1,4 +1,4 @@
-import 'package:lottie/lottie.dart';
+import 'package:expense_manager/app_page_injectable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tawk/flutter_tawk.dart';
 
@@ -22,6 +22,14 @@ class ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Support'),
+        leading: IconButton(
+          onPressed: () {
+            context.gNavigationService.openSettings(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back,
+          ),
+        ),
         backgroundColor: const Color(0XFFF7931E),
         elevation: 0,
       ),
@@ -33,10 +41,15 @@ class ChatScreenState extends State<ChatScreen> {
           email: widget.email,
         ),
         placeholder: Center(
-          child: Lottie.asset(
-            'assets/lottie/chatsupport.json',
-            height: MediaQuery.of(context).size.height / 2,
-            fit: BoxFit.contain,
+          child: SizedBox(
+            height: 120,
+            width: 120,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(100),
+              child: Image.asset(
+                "assets/images/chat_support.jpg",
+              ),
+            ),
           ),
         ),
       ),

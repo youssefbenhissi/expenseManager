@@ -3,6 +3,7 @@ import 'package:expense_manager/home/home_page_route_builder.dart';
 import 'package:expense_manager/settings/account_profile/account_profile_page_route_builder.dart';
 import 'package:expense_manager/settings/application_settings/application_settings_page_route_builder.dart';
 import 'package:expense_manager/settings/settings_page_route_builder.dart';
+import 'package:expense_manager/settings/support_screen/chat_screen_route_builder.dart';
 import 'package:flutter/material.dart';
 import 'navigation/navigation.dart';
 
@@ -41,6 +42,13 @@ class AppRoutesFactory extends RoutesFactory {
   Route<dynamic> createApplicationSettingsPageRoute() {
     return MaterialPageRoute(
       builder: ApplicationSettingsPageRouteBuilder(),
+    );
+  }
+
+  @override
+  Route<dynamic> createChatScreenPageRoute() {
+    return MaterialPageRoute(
+      builder: ChatScreenRouteBuilder(),
     );
   }
 }

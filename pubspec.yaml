@@ -47,7 +47,6 @@ dependencies:
   get: ^4.6.5
   getwidget: ^3.1.1
   flutter_tawk: ^0.1.0
-  lottie: 
 dev_dependencies:
   flutter_test:
     sdk: flutter
