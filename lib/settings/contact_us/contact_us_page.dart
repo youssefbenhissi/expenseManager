@@ -1,11 +1,7 @@
-// import 'package:easy_localization/easy_localization.dart';
 import 'package:expense_manager/app_page_injectable.dart';
 import 'package:flutter/material.dart';
-// import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
-// import 'package:pim/screens/profile/components/Chat_Screen.dart';
 
 class ContactUsPage extends StatefulWidget {
   const ContactUsPage({super.key});
@@ -18,6 +14,7 @@ class ContactUsPageState extends State<ContactUsPage> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Contact US"),
@@ -39,7 +36,7 @@ class ContactUsPageState extends State<ContactUsPage> {
                     left: 24.0, right: 24.0, bottom: 16.0, top: 16),
               ),
               SizedBox(
-                  height: Get.height / 7,
+                  height: height / 7,
                   child: GridView.count(
                       padding: const EdgeInsets.all(10),
                       crossAxisSpacing: 4,
