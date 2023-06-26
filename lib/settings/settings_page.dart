@@ -1,9 +1,11 @@
 import 'package:expense_manager/app_page_injectable.dart';
+import 'package:expense_manager/login/login_page.dart';
 import 'package:expense_manager/settings/constants.dart';
 import 'package:expense_manager/settings/settings_button.dart';
 import 'package:expense_manager/settings/widgets/support_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -145,6 +147,44 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       leadingIcon: CupertinoIcons.person_3_fill,
                       trailingIcon: CupertinoIcons.chevron_forward,
                     ),
+                    const SizedBox(height: 10),
+                    const Divider(),
+                    const SizedBox(height: 10),
+                    ListTile(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ShowCaseWidget(
+                              builder: Builder(
+                                  builder: (context) => const LoginPage()),
+                            ),
+                          ),
+                        );
+                      },
+                      leading: Container(
+                        height: 50,
+                        width: 50,
+                        margin: const EdgeInsets.only(bottom: 10),
+                        decoration: BoxDecoration(
+                          color: klightContentColor,
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: const Icon(Icons.logout, color: Colors.red),
+                      ),
+                      title: const Text(
+                        "Logout",
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontSize: ksmallFontSize,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      trailing: const Icon(
+                        CupertinoIcons.chevron_forward,
+                        color: Colors.red,
+                      ),
+                    )
                   ],
                 ),
                 const SizedBox(height: 20),
