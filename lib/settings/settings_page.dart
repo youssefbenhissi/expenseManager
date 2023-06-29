@@ -150,14 +150,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 const SizedBox(height: 20),
                 Column(children: [
                   CustomListTile(
-                    title: "Personal Data",
-                    onTap: () {
-                      context.gNavigationService.openAccountProfile(context);
-                    },
-                    leadingIcon: CupertinoIcons.person_fill,
-                    trailingIcon: CupertinoIcons.chevron_forward,
-                  ),
-                  CustomListTile(
                     title: "Settings",
                     onTap: () {
                       context.gNavigationService

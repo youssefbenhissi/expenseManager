@@ -88,56 +88,6 @@ class FaqPageState extends State<FaqPage> {
                                         color: Colors.grey, fontSize: 12)))
                           ]))
                   .toList(),
-              const Padding(
-                padding: EdgeInsets.only(
-                    left: 24.0, right: 24.0, bottom: 16.0, top: 16),
-                child: Text(
-                  "Contact US",
-                  style: TextStyle(
-                      //color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0),
-                ),
-              ),
-              SizedBox(
-                  height: height / 7,
-                  child: GridView.count(
-                      padding: const EdgeInsets.all(10),
-                      crossAxisSpacing: 4,
-                      physics: const BouncingScrollPhysics(),
-                      crossAxisCount: 4,
-                      mainAxisSpacing: 4,
-                      children: [
-                        GFIconButton(
-                          onPressed: () {},
-                          color: Colors.green,
-                          icon: const Icon(Icons.phone),
-                          size: GFSize.SMALL,
-                        ),
-                        GFIconButton(
-                          onPressed: () {},
-                          color: Colors.red,
-                          icon: const Icon(Icons.email),
-                          size: GFSize.SMALL,
-                        ),
-                        GFIconButton(
-                          onPressed: () {},
-                          color: Colors.blue,
-                          icon: const Icon(FontAwesomeIcons.facebookMessenger),
-                          size: GFSize.SMALL,
-                        ),
-                        GFIconButton(
-                          onPressed: () {},
-                          color: Colors.green,
-                          icon: const Icon(Icons.whatshot),
-                          size: GFSize.SMALL,
-                        ),
-                      ])),
-              GFIconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.share),
-                size: GFSize.SMALL,
-              ),
             ],
           ),
         ),

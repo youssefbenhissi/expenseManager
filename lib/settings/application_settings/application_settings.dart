@@ -1,5 +1,4 @@
 import 'package:expense_manager/app_page_injectable.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -14,12 +13,15 @@ class ApplicationSettingsPage extends StatefulWidget {
 class ApplicationSettingsPageState extends State<ApplicationSettingsPage> {
   late bool _dark;
   late bool _newsLetter;
-
+  late bool _receivedOfferNotification;
+  late bool _receivedAppUpdates;
   @override
   void initState() {
     super.initState();
     _dark = false;
     _newsLetter = false;
+    _receivedOfferNotification = false;
+    _receivedAppUpdates = false;
   }
 
   Brightness _getBrightness() {
@@ -113,16 +115,25 @@ class ApplicationSettingsPageState extends State<ApplicationSettingsPage> {
                   SwitchListTile(
                     activeColor: Colors.purple,
                     contentPadding: const EdgeInsets.all(0),
-                    value: true,
+                    value: _receivedOfferNotification,
                     title: const Text("Received Offer Notification"),
-                    onChanged: (val) {},
+                    onChanged: (val) {
+                      setState(() {
+                        _receivedOfferNotification =
+                            !_receivedOfferNotification;
+                      });
+                    },
                   ),
-                  const SwitchListTile(
+                  SwitchListTile(
                     activeColor: Colors.purple,
-                    contentPadding: EdgeInsets.all(0),
-                    value: true,
-                    title: Text("Received App Updates"),
-                    onChanged: null,
+                    contentPadding: const EdgeInsets.all(0),
+                    value: _receivedAppUpdates,
+                    title: const Text("Received App Updates"),
+                    onChanged: (val) {
+                      setState(() {
+                        _receivedAppUpdates = !_receivedAppUpdates;
+                      });
+                    },
                   ),
                   const SizedBox(height: 60.0),
                 ],
