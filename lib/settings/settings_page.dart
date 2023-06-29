@@ -166,22 +166,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     leadingIcon: CupertinoIcons.settings,
                     trailingIcon: CupertinoIcons.chevron_forward,
                   ),
-                  CustomListTile(
-                    title: "E-Statements",
-                    onTap: () {
-                      context.gNavigationService.openFaq(context);
-                    },
-                    leadingIcon: CupertinoIcons.doc_fill,
-                    trailingIcon: CupertinoIcons.chevron_forward,
-                  ),
-                  CustomListTile(
-                    title: "Refferal Code",
-                    onTap: () {
-                      context.gNavigationService.openFaq(context);
-                    },
-                    leadingIcon: CupertinoIcons.heart_fill,
-                    trailingIcon: CupertinoIcons.chevron_forward,
-                  ),
                 ]),
                 const SizedBox(height: 10),
                 const Divider(),
