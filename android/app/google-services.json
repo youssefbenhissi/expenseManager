@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "915143700556",
+    "project_id": "expensiya",
+    "storage_bucket": "expensiya.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:915143700556:android:963dee2dd69112be7784e9",
+        "android_client_info": {
+          "package_name": "com.example.expense_manager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "915143700556-3nr4vni5kfmnn6mk7at37mp6in7on6tp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAr4ZPljLnubdcqhMi0U86rT5R4vpng2GY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "915143700556-3nr4vni5kfmnn6mk7at37mp6in7on6tp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

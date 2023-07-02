@@ -1,6 +1,8 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:expense_manager/app_page_injectable.dart';
 import 'package:expense_manager/login/login_page.dart';
+import 'package:expense_manager/login/new_login_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
@@ -14,6 +16,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final user = FirebaseAuth.instance.currentUser!;
   double value = 0.0;
 
   @override
@@ -39,17 +42,18 @@ class _HomePageState extends State<HomePage> {
                 DrawerHeader(
                     child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    CircleAvatar(
+                  children: [
+                    const CircleAvatar(
                       radius: 50.0,
                       backgroundImage: AssetImage("assets/images/profile1.png"),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10.0,
                     ),
                     Text(
-                      "Youssef",
-                      style: TextStyle(color: Colors.black, fontSize: 20.0),
+                      user.email.toString(),
+                      style:
+                          const TextStyle(color: Colors.black, fontSize: 20.0),
                     ),
                   ],
                 )),
@@ -110,16 +114,20 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       ListTile(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ShowCaseWidget(
-                                builder: Builder(
-                                    builder: (context) => const LoginPage()),
+                        onTap: () async {
+                          await FirebaseAuth.instance.signOut().then((value) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ShowCaseWidget(
+                                  builder: Builder(
+                                      builder: (context) => NewLoginPage()),
+                                ),
                               ),
-                            ),
-                          );
+                            );
+                           
+                          });
+                           print("logout Successfully");
                         },
                         leading: const Icon(
                           Icons.logout,

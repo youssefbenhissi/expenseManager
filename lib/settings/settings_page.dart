@@ -1,9 +1,11 @@
 import 'dart:io';
 import 'package:expense_manager/app_page_injectable.dart';
 import 'package:expense_manager/login/login_page.dart';
+import 'package:expense_manager/login/new_login_page.dart';
 import 'package:expense_manager/settings/constants.dart';
 import 'package:expense_manager/settings/select_photo_options_screen.dart';
 import 'package:expense_manager/settings/settings_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -193,12 +195,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     const SizedBox(height: 10),
                     ListTile(
                       onTap: () {
+                        FirebaseAuth.instance.signOut();
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => ShowCaseWidget(
-                              builder: Builder(
-                                  builder: (context) => const LoginPage()),
+                              builder:
+                                  Builder(builder: (context) => NewLoginPage()),
                             ),
                           ),
                         );
