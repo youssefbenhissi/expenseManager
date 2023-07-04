@@ -4,7 +4,7 @@ import 'package:expense_manager/common/shared_preferences_helper.dart';
 import 'package:expense_manager/common/show_case_widget.dart';
 import 'package:expense_manager/login/button.dart';
 import 'package:expense_manager/login/square_tile.dart';
-import 'package:expense_manager/login/text_field.dart';
+import 'package:expense_manager/common/text_field.dart';
 import 'package:expense_manager/provider/locale_provider.dart';
 import 'package:expense_manager/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -154,7 +154,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.grey[100],
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -176,13 +176,13 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(
                 height: 25,
               ),
-              LoginPageTextField(
+              MyTextField(
                 controller: usernameController,
                 hintText: "Username",
                 obscureText: false,
               ),
               const SizedBox(height: 10),
-              LoginPageTextField(
+              MyTextField(
                 controller: passwordController,
                 hintText: "Password",
                 obscureText: true,
@@ -208,6 +208,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 25,
               ),
               MyButton(
+                paddingValue: 25,
                 title: "Sign In",
                 onTap: () {
                   signUserIn(

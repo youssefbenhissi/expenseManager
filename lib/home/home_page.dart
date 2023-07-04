@@ -83,8 +83,6 @@ class _HomePageState extends State<HomePage> {
                               title: 'Device support',
                               message:
                                   'Your device does not support any other login options.Please login by entering your e-mail and password',
-
-                              /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
                               contentType: ContentType.failure,
                             ),
                           );
@@ -128,7 +126,6 @@ class _HomePageState extends State<HomePage> {
                               ),
                             );
                           });
-                          print("logout Successfully");
                         },
                         leading: const Icon(
                           Icons.logout,

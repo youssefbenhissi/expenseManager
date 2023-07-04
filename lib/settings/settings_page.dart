@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:expense_manager/app_page_injectable.dart';
+import 'package:expense_manager/login/button.dart';
 import 'package:expense_manager/login/login_page.dart';
 import 'package:expense_manager/settings/constants.dart';
 import 'package:expense_manager/settings/select_photo_options_screen.dart';
@@ -21,7 +22,7 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   File? _image;
-
+  final user = FirebaseAuth.instance.currentUser;
   Future _pickImage(ImageSource source) async {
     try {
       final image = await ImagePicker().pickImage(source: source);
@@ -72,6 +73,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 20),
         child: Center(
@@ -112,11 +114,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           height: 35,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(100),
-                            color: Colors.yellow,
+                            color: Colors.black,
                           ),
                           child: const Icon(
                             Icons.edit,
-                            color: Colors.black,
+                            color: Colors.white,
                             size: 20,
                           ),
                         ),
@@ -125,26 +127,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ],
                 ),
                 const SizedBox(height: 10),
-                Text("youssef",
-                    style: Theme.of(context).textTheme.headlineMedium),
-                Text("youssef.benhissi@esprit.tn",
-                    style: Theme.of(context).textTheme.bodyMedium),
+                Text(user!.email.toString(),
+                    style: Theme.of(context).textTheme.headlineSmall),
                 const SizedBox(height: 20),
-                SizedBox(
-                  width: 200,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      context.gNavigationService.openAccountProfile(context);
-                    },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.yellow,
-                        side: BorderSide.none,
-                        shape: const StadiumBorder()),
-                    child: const Text(
-                      "Edit",
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  ),
+                MyButton(
+                  title: "Edit",
+                  onTap: () {
+                    context.gNavigationService.openAccountProfile(context);
+                  },
+                  paddingValue: 15,
                 ),
                 const SizedBox(height: 20),
                 const Divider(),

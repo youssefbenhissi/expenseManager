@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
-class LoginPageTextField extends StatelessWidget {
+class MyTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final bool obscureText;
-  const LoginPageTextField({
+  final Icon? prefixIcon;
+  const MyTextField({
     super.key,
     required this.controller,
     required this.hintText,
     required this.obscureText,
+    this.prefixIcon,
   });
 
   @override
@@ -19,6 +21,8 @@ class LoginPageTextField extends StatelessWidget {
         controller: controller,
         obscureText: obscureText,
         decoration: InputDecoration(
+          prefixIcon: prefixIcon,
+          iconColor: Colors.grey,
           enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white),
           ),

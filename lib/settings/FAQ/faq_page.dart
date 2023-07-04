@@ -1,4 +1,5 @@
 import 'package:expense_manager/app_page_injectable.dart';
+import 'package:expense_manager/common/app_bar.dart';
 import 'package:flutter/material.dart';
 
 class FaqPage extends StatefulWidget {
@@ -39,14 +40,11 @@ class FaqPageState extends State<FaqPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Settings"),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => context.gNavigationService.openSettings(context),
-        ),
-        elevation: 0,
-      ),
+      appBar: MyAppBar(
+          onPressedFunction: () {
+            context.gNavigationService.openSettings(context);
+          },
+          title: 'FAQ Page'),
       body: SafeArea(
         bottom: true,
         child: Padding(
@@ -54,16 +52,6 @@ class FaqPageState extends State<FaqPage> {
           child: ListView(
             physics: const BouncingScrollPhysics(),
             children: <Widget>[
-              const Padding(
-                padding: EdgeInsets.only(left: 24.0, right: 24.0, bottom: 16.0),
-                child: Text(
-                  'FAQ',
-                  style: TextStyle(
-                      // color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0),
-                ),
-              ),
               ...panels
                   .map((panel) => ExpansionTile(
                           title: Text(

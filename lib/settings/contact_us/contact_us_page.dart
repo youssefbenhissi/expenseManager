@@ -1,4 +1,5 @@
 import 'package:expense_manager/app_page_injectable.dart';
+import 'package:expense_manager/common/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:getwidget/getwidget.dart';
@@ -16,14 +17,11 @@ class ContactUsPageState extends State<ContactUsPage> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Contact US"),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => context.gNavigationService.openSettings(context),
-        ),
-        elevation: 0,
-      ),
+      appBar: MyAppBar(
+          onPressedFunction: () {
+            context.gNavigationService.openSettings(context);
+          },
+          title: 'Contact Us Page'),
       body: SafeArea(
         bottom: true,
         child: Padding(

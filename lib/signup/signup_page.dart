@@ -2,7 +2,7 @@ import 'package:expense_manager/app_page_injectable.dart';
 import 'package:expense_manager/common/popup_notification.dart';
 import 'package:expense_manager/login/button.dart';
 import 'package:expense_manager/login/square_tile.dart';
-import 'package:expense_manager/login/text_field.dart';
+import 'package:expense_manager/common/text_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -69,7 +69,7 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.grey[100],
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -91,19 +91,19 @@ class _SignUpPageState extends State<SignUpPage> {
               const SizedBox(
                 height: 25,
               ),
-              LoginPageTextField(
+              MyTextField(
                 controller: usernameController,
                 hintText: "Username",
                 obscureText: false,
               ),
               const SizedBox(height: 10),
-              LoginPageTextField(
+              MyTextField(
                 controller: passwordController,
                 hintText: "Password",
                 obscureText: true,
               ),
               const SizedBox(height: 10),
-              LoginPageTextField(
+              MyTextField(
                 controller: confirmPasswordController,
                 hintText: "Confirm Password",
                 obscureText: true,
@@ -116,6 +116,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 onTap: () {
                   signUserUp();
                 },
+                paddingValue: 25,
               ),
               const SizedBox(height: 50),
               Padding(

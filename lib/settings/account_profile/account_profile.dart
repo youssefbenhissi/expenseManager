@@ -1,5 +1,8 @@
 import 'dart:io';
 import 'package:expense_manager/app_page_injectable.dart';
+import 'package:expense_manager/common/app_bar.dart';
+import 'package:expense_manager/common/text_field.dart';
+import 'package:expense_manager/login/button.dart';
 import 'package:expense_manager/settings/select_photo_options_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,7 +18,10 @@ class UpdateProfile extends StatefulWidget {
 
 class _UpdateProfileState extends State<UpdateProfile> {
   File? _image;
-
+  late TextEditingController fullNameEditingController;
+  late TextEditingController emailEditingController;
+  late TextEditingController phoneNumberEditingController;
+  late TextEditingController passwordEditingController;
   Future _pickImage(ImageSource source) async {
     try {
       final image = await ImagePicker().pickImage(source: source);
@@ -64,21 +70,39 @@ class _UpdateProfileState extends State<UpdateProfile> {
   }
 
   @override
+  void initState() {
+    fullNameEditingController = TextEditingController();
+    emailEditingController = TextEditingController();
+    phoneNumberEditingController = TextEditingController();
+    passwordEditingController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    fullNameEditingController.dispose();
+    emailEditingController.dispose();
+    phoneNumberEditingController.dispose();
+    passwordEditingController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-            onPressed: () => {context.gNavigationService.openSettings(context)},
-            icon: const Icon(Icons.arrow_back)),
-        title: const Text(
-          "Edit Profile",
-          style: TextStyle(color: Colors.black),
-        ),
-      ),
+      backgroundColor: Colors.grey[100],
+      appBar: MyAppBar(
+          onPressedFunction: () {
+            context.gNavigationService.openSettings(context);
+          },
+          title: 'Edit Profile Page'),
       body: SingleChildScrollView(
         child: SizedBox(
           child: Column(
             children: [
+              const SizedBox(
+                height: 15,
+              ),
               Stack(
                 children: [
                   SizedBox(
@@ -108,11 +132,11 @@ class _UpdateProfileState extends State<UpdateProfile> {
                         height: 35,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
-                          color: Colors.yellow,
+                          color: Colors.black,
                         ),
                         child: const Icon(
                           Icons.edit,
-                          color: Colors.black,
+                          color: Colors.white,
                           size: 20,
                         ),
                       ),
@@ -126,50 +150,48 @@ class _UpdateProfileState extends State<UpdateProfile> {
               Form(
                 child: Column(
                   children: [
-                    TextFormField(
-                      decoration: const InputDecoration(
-                          label: Text('Full Name'),
-                          prefixIcon: Icon(Icons.person)),
+                    MyTextField(
+                      prefixIcon: const Icon(Icons.person, color: Colors.grey),
+                      controller: fullNameEditingController,
+                      hintText: "Full Name",
+                      obscureText: false,
                     ),
                     const SizedBox(
                       height: 20,
                     ),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                          label: Text('E-mail'), prefixIcon: Icon(Icons.email)),
+                    MyTextField(
+                      prefixIcon: const Icon(Icons.email, color: Colors.grey),
+                      controller: emailEditingController,
+                      hintText: "E-mail",
+                      obscureText: false,
                     ),
                     const SizedBox(
                       height: 20,
                     ),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                          label: Text('Phone No'),
-                          prefixIcon: Icon(Icons.phone)),
+                    MyTextField(
+                      prefixIcon: const Icon(Icons.phone, color: Colors.grey),
+                      controller: phoneNumberEditingController,
+                      hintText: "Phone no",
+                      obscureText: false,
                     ),
                     const SizedBox(
                       height: 20,
                     ),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                          label: Text('Password'),
-                          prefixIcon: Icon(Icons.password)),
+                    MyTextField(
+                      prefixIcon:
+                          const Icon(Icons.password, color: Colors.grey),
+                      controller: passwordEditingController,
+                      hintText: "Password",
+                      obscureText: true,
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 50,
                     ),
-                    SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.yellow,
-                              side: BorderSide.none,
-                              shape: const StadiumBorder()),
-                          child: const Text(
-                            "Edit Profile",
-                            style: TextStyle(color: Colors.black),
-                          )),
-                    )
+                    MyButton(
+                      title: "Edit Profile",
+                      onTap: () {},
+                      paddingValue: 15,
+                    ),
                   ],
                 ),
               )

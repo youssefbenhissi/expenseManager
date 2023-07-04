@@ -1,4 +1,5 @@
 import 'package:expense_manager/app_page_injectable.dart';
+import 'package:expense_manager/common/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tawk/flutter_tawk.dart';
 
@@ -20,19 +21,11 @@ class ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Support'),
-        leading: IconButton(
-          onPressed: () {
+      appBar: MyAppBar(
+          onPressedFunction: () {
             context.gNavigationService.openSettings(context);
           },
-          icon: const Icon(
-            Icons.arrow_back,
-          ),
-        ),
-        backgroundColor: const Color(0XFFF7931E),
-        elevation: 0,
-      ),
+          title: 'Support Page'),
       body: Tawk(
         directChatLink:
             "https://tawk.to/chat/603acfdc385de407571acca1/1evirnttb",

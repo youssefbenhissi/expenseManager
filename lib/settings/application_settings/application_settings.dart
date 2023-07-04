@@ -1,4 +1,5 @@
 import 'package:expense_manager/app_page_injectable.dart';
+import 'package:expense_manager/common/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -35,22 +36,12 @@ class ApplicationSettingsPageState extends State<ApplicationSettingsPage> {
         brightness: _getBrightness(),
       ),
       child: Scaffold(
-        backgroundColor: _dark ? null : Colors.grey.shade200,
-        appBar: AppBar(
-          elevation: 0,
-          systemOverlayStyle:
-              _dark ? SystemUiOverlayStyle.dark : SystemUiOverlayStyle.light,
-          iconTheme: IconThemeData(color: _dark ? Colors.white : Colors.black),
-          backgroundColor: Colors.transparent,
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () => context.gNavigationService.openSettings(context),
-          ),
-          title: Text(
-            'Application Settings',
-            style: TextStyle(color: _dark ? Colors.white : Colors.black),
-          ),
-        ),
+        backgroundColor: _dark ? null : Colors.grey[100],
+        appBar: MyAppBar(
+            onPressedFunction: () {
+              context.gNavigationService.openSettings(context);
+            },
+            title: 'Application Settings Page'),
         body: Stack(
           fit: StackFit.expand,
           children: <Widget>[
@@ -70,7 +61,7 @@ class ApplicationSettingsPageState extends State<ApplicationSettingsPage> {
                         ListTile(
                           leading: const Icon(
                             FontAwesomeIcons.language,
-                            color: Colors.purple,
+                            color: Colors.black,
                           ),
                           title: const Text("Change Language"),
                           trailing: const Icon(Icons.keyboard_arrow_right),
