@@ -1,4 +1,5 @@
 import 'package:expense_manager/app_page_injectable.dart';
+import 'package:expense_manager/common/popup_notification.dart';
 import 'package:expense_manager/login/button.dart';
 import 'package:expense_manager/login/square_tile.dart';
 import 'package:expense_manager/login/text_field.dart';
@@ -33,9 +34,15 @@ class _NewLoginPageState extends State<NewLoginPage> {
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
+        ErrorPopUpNotification.create(
+            context: context,
+            title: "Wrong Credentials",
+            message: "No user found for that email.");
       } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
+        ErrorPopUpNotification.create(
+            context: context,
+            title: "Wrongg Credentials",
+            message: "Wrong password provided for that user.");
       }
     }
   }
@@ -80,7 +87,7 @@ class _NewLoginPageState extends State<NewLoginPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
                       'ForgetPassword',
@@ -161,6 +168,9 @@ class _NewLoginPageState extends State<NewLoginPage> {
                     width: 4,
                   ),
                   GestureDetector(
+                    onTap: () {
+                      context.gNavigationService.openSignUpScreen(context);
+                    },
                     child: const Text(
                       'Register Now',
                       style: TextStyle(

@@ -7,3 +7,5 @@ const _accountProfilePageRouteName = '/accountProfile';
 const _applicationSettingsPageRouteName = '/applicationSettings';
 const _chatScreenPageRouteName = '/chatScreen';
 const _contactUsPageRouteName = '/contactUsScreen';
+const _loginPageRouteName = '/login';
+const _signUpPageRouteName = '/signUp';

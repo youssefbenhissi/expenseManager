@@ -1,4 +1,5 @@
 import 'package:expense_manager/app_page_injectable.dart';
+import 'package:expense_manager/common/popup_notification.dart';
 import 'package:expense_manager/login/button.dart';
 import 'package:expense_manager/login/square_tile.dart';
 import 'package:expense_manager/login/text_field.dart';
@@ -29,15 +30,26 @@ class _SignUpPageState extends State<SignUpPage> {
         });
     try {
       if (passwordController.text == confirmPasswordController.text) {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-            email: usernameController.text, password: passwordController.text);
+        await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+                email: usernameController.text,
+                password: passwordController.text)
+            .then((value) {
+          context.gNavigationService.openHome(context);
+        });
       }
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        print('No user found for that email.');
-      } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
+      if (e.code == 'weak-password') {
+        ErrorPopUpNotification.create(
+            context: context,
+            title: "Wrong Password",
+            message: "The password provided is too weak.");
+      } else if (e.code == 'email-already-in-use') {
+        ErrorPopUpNotification.create(
+            context: context,
+            title: "Wrong Email",
+            message: "The account already exists for that email.");
       }
     }
   }
@@ -144,7 +156,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   )
                 ],
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 50),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -156,6 +168,9 @@ class _SignUpPageState extends State<SignUpPage> {
                     width: 4,
                   ),
                   GestureDetector(
+                    onTap: () {
+                      context.gNavigationService.openLoginScreen(context);
+                    },
                     child: const Text(
                       'Login now',
                       style: TextStyle(

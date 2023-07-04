@@ -19,6 +19,11 @@ Route<dynamic>? Function(RouteSettings settings) onGenerateAppRoute(
         return routesFactory.createChatScreenPageRoute();
       case _contactUsPageRouteName:
         return routesFactory.createContactUsPageRoute();
+      case _loginPageRouteName:
+        return routesFactory.createLoginPageRoute();
+      case _signUpPageRouteName:
+        return routesFactory.createSignUpPageRoute();
+
       default:
         return null;
     }

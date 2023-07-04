@@ -63,4 +63,20 @@ class NavigationService {
       ModalRoute.withName('/'),
     );
   }
+  Future<void> openLoginScreen(
+    BuildContext context,
+  ) {
+    return Navigator.of(context).pushNamedAndRemoveUntil(
+      _loginPageRouteName,
+      ModalRoute.withName('/'),
+    );
+  }
+  Future<void> openSignUpScreen(
+    BuildContext context,
+  ) {
+    return Navigator.of(context).pushNamedAndRemoveUntil(
+      _signUpPageRouteName,
+      ModalRoute.withName('/'),
+    );
+  }
 }
