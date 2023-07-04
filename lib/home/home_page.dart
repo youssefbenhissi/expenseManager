@@ -1,6 +1,5 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:expense_manager/app_page_injectable.dart';
-import 'package:expense_manager/login/login_page.dart';
 import 'package:expense_manager/login/new_login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -124,7 +123,7 @@ class _HomePageState extends State<HomePage> {
                               MaterialPageRoute(
                                 builder: (context) => ShowCaseWidget(
                                   builder: Builder(
-                                      builder: (context) => NewLoginPage()),
+                                      builder: (context) => const LoginPage()),
                                 ),
                               ),
                             );

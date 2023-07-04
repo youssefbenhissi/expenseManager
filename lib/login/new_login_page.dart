@@ -1,26 +1,33 @@
 import 'package:expense_manager/app_page_injectable.dart';
 import 'package:expense_manager/common/popup_notification.dart';
 import 'package:expense_manager/common/shared_preferences_helper.dart';
-import 'package:expense_manager/home/home_page.dart';
+import 'package:expense_manager/common/show_case_widget.dart';
 import 'package:expense_manager/login/button.dart';
 import 'package:expense_manager/login/square_tile.dart';
 import 'package:expense_manager/login/text_field.dart';
+import 'package:expense_manager/provider/locale_provider.dart';
 import 'package:expense_manager/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:showcaseview/showcaseview.dart';
 
-class NewLoginPage extends StatefulWidget {
-  const NewLoginPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<NewLoginPage> createState() => _NewLoginPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _NewLoginPageState extends State<NewLoginPage> {
+class _LoginPageState extends State<LoginPage> {
+  final GlobalKey _one = GlobalKey();
+  final GlobalKey _two = GlobalKey();
+  final GlobalKey _three = GlobalKey();
+  final GlobalKey _four = GlobalKey();
   late bool _useFingerPrintAuthenticationNextTime;
   final LocalAuthentication auth = LocalAuthentication();
 
@@ -37,7 +44,21 @@ class _NewLoginPageState extends State<NewLoginPage> {
         });
       }
     });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      SharedPreferencesHelper.isFirstLaunch().then((result) {
+        if (result) {
+          ShowCaseWidget.of(context).startShowCase([_one, _two, _three, _four]);
+        }
+      });
+    });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    usernameController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 
   Future<bool> signUserIn({
@@ -270,7 +291,58 @@ class _NewLoginPageState extends State<NewLoginPage> {
                     ),
                   ),
                 ],
-              )
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ShowCaseView(
+                    globalKey: _one,
+                    title: 'francais',
+                    description: 'francais',
+                    child: TextButton(
+                        onPressed: () {
+                          final provider = Provider.of<LocaleProvider>(context,
+                              listen: false);
+
+                          provider.setLocale(const Locale('fr'));
+                        },
+                        child: const Text("FRANÇAIS",
+                            style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              color: Colors.black,
+                            ))),
+                  ),
+                  ShowCaseView(
+                    globalKey: _two,
+                    title: 'arabe',
+                    description: 'arabe',
+                    child: TextButton(
+                        onPressed: () {
+                          final provider = Provider.of<LocaleProvider>(context,
+                              listen: false);
+
+                          provider.setLocale(const Locale('ar'));
+                        },
+                        child: const Text("العربية",
+                            style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              color: Colors.black,
+                            ))),
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        final provider =
+                            Provider.of<LocaleProvider>(context, listen: false);
+
+                        provider.setLocale(const Locale('en'));
+                      },
+                      child: const Text("English",
+                          style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            color: Colors.black,
+                          ))),
+                ],
+              ),
             ],
           ),
         ),

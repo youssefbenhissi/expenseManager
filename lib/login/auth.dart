@@ -2,6 +2,7 @@ import 'package:expense_manager/home/home_page.dart';
 import 'package:expense_manager/login/new_login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 class Auth extends StatelessWidget {
   const Auth({super.key});
@@ -15,7 +16,9 @@ class Auth extends StatelessWidget {
           if (snapshot.hasData) {
             return const HomePage();
           } else {
-            return const NewLoginPage();
+            return ShowCaseWidget(
+              builder: Builder(builder: (context) => const LoginPage()),
+            );
           }
         },
       ),

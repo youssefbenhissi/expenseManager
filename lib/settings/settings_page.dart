@@ -199,8 +199,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => ShowCaseWidget(
-                              builder:
-                                  Builder(builder: (context) => const NewLoginPage()),
+                              builder: Builder(
+                                  builder: (context) => const LoginPage()),
                             ),
                           ),
                         );

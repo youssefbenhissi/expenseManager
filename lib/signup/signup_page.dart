@@ -37,8 +37,8 @@ class _SignUpPageState extends State<SignUpPage> {
             .then((value) {
           context.gNavigationService.openHome(context);
         });
-      }else{
-         ErrorPopUpNotification.create(
+      } else {
+        ErrorPopUpNotification.create(
             context: context,
             title: "Wrong Password",
             message: "You must confirm your password");
@@ -57,6 +57,13 @@ class _SignUpPageState extends State<SignUpPage> {
             message: "The account already exists for that email.");
       }
     }
+  }
+
+  @override
+  void dispose() {
+    usernameController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 
   @override
