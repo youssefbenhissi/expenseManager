@@ -1,12 +1,17 @@
 import 'package:expense_manager/app_page_injectable.dart';
 import 'package:expense_manager/common/popup_notification.dart';
+import 'package:expense_manager/common/shared_preferences_helper.dart';
+import 'package:expense_manager/home/home_page.dart';
 import 'package:expense_manager/login/button.dart';
 import 'package:expense_manager/login/square_tile.dart';
 import 'package:expense_manager/login/text_field.dart';
 import 'package:expense_manager/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:local_auth/local_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class NewLoginPage extends StatefulWidget {
   const NewLoginPage({super.key});
@@ -16,11 +21,27 @@ class NewLoginPage extends StatefulWidget {
 }
 
 class _NewLoginPageState extends State<NewLoginPage> {
+  late bool _useFingerPrintAuthenticationNextTime;
+  final LocalAuthentication auth = LocalAuthentication();
+
   final usernameController = TextEditingController();
 
   final passwordController = TextEditingController();
+  @override
+  void initState() {
+    _useFingerPrintAuthenticationNextTime = false;
+    SharedPreferencesHelper.useFingerPrintAuthentication().then((result) {
+      if (result) {
+        setState(() {
+          _useFingerPrintAuthenticationNextTime = result;
+        });
+      }
+    });
+    super.initState();
+  }
 
-  void signUserIn() async {
+  Future<bool> signUserIn(
+      {required String email, required String password}) async {
     showDialog(
         context: context,
         builder: (context) {
@@ -29,9 +50,21 @@ class _NewLoginPageState extends State<NewLoginPage> {
           );
         });
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: usernameController.text, password: passwordController.text);
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+      if (_useFingerPrintAuthenticationNextTime) {
+        SharedPreferencesHelper.setValue(
+            SharedPreferencesHelper.PREFERENCES_EMAIL_STRING, email);
+        SharedPreferencesHelper.setValue(
+            SharedPreferencesHelper.PREFERENCES_PASSWORD_STRING, password);
+      } else {
+        SharedPreferencesHelper.setValue(
+            SharedPreferencesHelper.PREFERENCES_EMAIL_STRING, "");
+        SharedPreferencesHelper.setValue(
+            SharedPreferencesHelper.PREFERENCES_PASSWORD_STRING, "");
+      }
       Navigator.pop(context);
+      return true;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         ErrorPopUpNotification.create(
@@ -41,9 +74,51 @@ class _NewLoginPageState extends State<NewLoginPage> {
       } else if (e.code == 'wrong-password') {
         ErrorPopUpNotification.create(
             context: context,
-            title: "Wrongg Credentials",
+            title: "Wrong Credentials",
             message: "Wrong password provided for that user.");
       }
+      return false;
+    }
+  }
+
+  Future<void> _fingerPrintAuthenticate() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String email =
+        prefs.getString(SharedPreferencesHelper.PREFERENCES_EMAIL_STRING) ?? '';
+    String password =
+        prefs.getString(SharedPreferencesHelper.PREFERENCES_PASSWORD_STRING) ??
+            '';
+    if (email.isEmpty || password.isEmpty) {
+      ErrorPopUpNotification.create(
+          context: context,
+          title: "Wrong Configuration",
+          message:
+              "You should at least connect using your email and password once and enable the fingerPrint Authentication");
+      return;
+    }
+    bool authenticated = false;
+    try {
+      authenticated = await auth.authenticate(
+        localizedReason: 'Let OS determine authentication method',
+        options: const AuthenticationOptions(
+          stickyAuth: true,
+        ),
+      );
+      bool successfulLogin = await signUserIn(email: email, password: password);
+      if (authenticated && successfulLogin) {
+        context.gNavigationService.openHome(context);
+      }
+    } on PlatformException {
+      ErrorPopUpNotification.create(
+          context: context,
+          title: "Device support",
+          message:
+              "Your device does not support any other login options.Please login by entering your e-mail and password");
+      return;
+    }
+
+    if (!mounted) {
+      return;
     }
   }
 
@@ -85,15 +160,19 @@ class _NewLoginPageState extends State<NewLoginPage> {
               ),
               const SizedBox(height: 10),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      'ForgetPassword',
-                      style: TextStyle(color: Colors.grey[600]),
-                    ),
-                  ],
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: SwitchListTile(
+                  activeColor: Colors.purple,
+                  contentPadding: const EdgeInsets.all(0),
+                  value: _useFingerPrintAuthenticationNextTime,
+                  title:
+                      const Text("Enable FingerPrint Authentication next Time"),
+                  onChanged: (val) {
+                    setState(() {
+                      _useFingerPrintAuthenticationNextTime =
+                          !_useFingerPrintAuthenticationNextTime;
+                    });
+                  },
                 ),
               ),
               const SizedBox(
@@ -102,7 +181,10 @@ class _NewLoginPageState extends State<NewLoginPage> {
               MyButton(
                 title: "Sign In",
                 onTap: () {
-                  signUserIn();
+                  signUserIn(
+                    email: usernameController.text,
+                    password: passwordController.text,
+                  );
                 },
               ),
               const SizedBox(height: 50),
@@ -151,7 +233,9 @@ class _NewLoginPageState extends State<NewLoginPage> {
                     width: 25,
                   ),
                   SquareTile(
-                    onTap: () {},
+                    onTap: () async {
+                      await _fingerPrintAuthenticate();
+                    },
                     icon: FontAwesomeIcons.fingerprint,
                   )
                 ],

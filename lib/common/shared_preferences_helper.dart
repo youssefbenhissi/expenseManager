@@ -1,9 +1,16 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesHelper {
-  // ignore: constant_identifier_names
   static const PREFERENCES_IS_FIRST_LAUNCH_STRING =
       "PREFERENCES_IS_FIRST_LAUNCH_STRING";
+  static const PREFERENCES_EMAIL_STRING =
+      "PREFERENCES_EMAIL_STRING";
+  static const PREFERENCES_PASSWORD_STRING =
+      "PREFERENCES_PASSWORD_STRING";
+  static const PREFERENCES_ENABLE_FINGERPRINT_AUTHENTICATION_NEXT_TIME_STRING =
+      "PREFERENCES_ENABLE_FINGERPRINT_AUTHENTICATION_NEXT_TIME_STRING";
 
   static late SharedPreferences _preferences;
 
@@ -36,6 +43,15 @@ class SharedPreferencesHelper {
     }
 
     return isFirstLaunch;
+  }
+
+  static Future<bool> useFingerPrintAuthentication() async {
+    await init();
+    bool isEnabled = _preferences.getBool(
+            PREFERENCES_ENABLE_FINGERPRINT_AUTHENTICATION_NEXT_TIME_STRING) ??
+        false;
+
+    return isEnabled;
   }
 
   // Retrieve a value from SharedPreferences
