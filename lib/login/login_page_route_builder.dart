@@ -5,6 +5,6 @@ class LoginPageRouteBuilder {
   LoginPageRouteBuilder();
 
   Widget call(BuildContext context) {
-    return const NewLoginPage();
+    return const LoginPage();
   }
 }
