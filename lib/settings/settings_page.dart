@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:expense_manager/app_page_injectable.dart';
-import 'package:expense_manager/login/new_login_page.dart';
+import 'package:expense_manager/login/login_page.dart';
 import 'package:expense_manager/settings/constants.dart';
 import 'package:expense_manager/settings/select_photo_options_screen.dart';
 import 'package:expense_manager/settings/settings_button.dart';

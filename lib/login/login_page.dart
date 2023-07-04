@@ -191,7 +191,7 @@ class _LoginPageState extends State<LoginPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: SwitchListTile(
-                  activeColor: Colors.purple,
+                  activeColor: Colors.black,
                   contentPadding: const EdgeInsets.all(0),
                   value: _useFingerPrintAuthenticationNextTime,
                   title:
