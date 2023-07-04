@@ -40,8 +40,11 @@ class _NewLoginPageState extends State<NewLoginPage> {
     super.initState();
   }
 
-  Future<bool> signUserIn(
-      {required String email, required String password}) async {
+  Future<bool> signUserIn({
+    required String email,
+    required String password,
+    required bool loginUserFingerPrintAuthentication,
+  }) async {
     showDialog(
         context: context,
         builder: (context) {
@@ -58,10 +61,12 @@ class _NewLoginPageState extends State<NewLoginPage> {
         SharedPreferencesHelper.setValue(
             SharedPreferencesHelper.PREFERENCES_PASSWORD_STRING, password);
       } else {
-        SharedPreferencesHelper.setValue(
-            SharedPreferencesHelper.PREFERENCES_EMAIL_STRING, "");
-        SharedPreferencesHelper.setValue(
-            SharedPreferencesHelper.PREFERENCES_PASSWORD_STRING, "");
+        if (!loginUserFingerPrintAuthentication) {
+          SharedPreferencesHelper.setValue(
+              SharedPreferencesHelper.PREFERENCES_EMAIL_STRING, "");
+          SharedPreferencesHelper.setValue(
+              SharedPreferencesHelper.PREFERENCES_PASSWORD_STRING, "");
+        }
       }
       Navigator.pop(context);
       return true;
@@ -104,7 +109,10 @@ class _NewLoginPageState extends State<NewLoginPage> {
           stickyAuth: true,
         ),
       );
-      bool successfulLogin = await signUserIn(email: email, password: password);
+      bool successfulLogin = await signUserIn(
+          email: email,
+          password: password,
+          loginUserFingerPrintAuthentication: true);
       if (authenticated && successfulLogin) {
         context.gNavigationService.openHome(context);
       }
@@ -182,9 +190,9 @@ class _NewLoginPageState extends State<NewLoginPage> {
                 title: "Sign In",
                 onTap: () {
                   signUserIn(
-                    email: usernameController.text,
-                    password: passwordController.text,
-                  );
+                      email: usernameController.text,
+                      password: passwordController.text,
+                      loginUserFingerPrintAuthentication: false);
                 },
               ),
               const SizedBox(height: 50),
