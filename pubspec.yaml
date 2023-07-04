@@ -49,6 +49,7 @@ dependencies:
   flutter_tawk: ^0.1.0
   firebase_auth: ^4.6.3
   google_sign_in: ^6.1.4
+  gsheets: ^0.4.2
 dev_dependencies:
   flutter_test:
     sdk: flutter

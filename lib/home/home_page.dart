@@ -1,5 +1,9 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:expense_manager/app_page_injectable.dart';
+import 'package:expense_manager/common/menu.dart';
+import 'package:expense_manager/home/plus_button.dart';
+import 'package:expense_manager/home/top_card.dart';
+import 'package:expense_manager/home/transaction.dart';
 import 'package:expense_manager/login/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -22,127 +26,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(children: [
-        SafeArea(
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.blue[400]!,
-                  Colors.blue[800]!,
-                ],
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-              ),
-            ),
-            width: 200.0,
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                DrawerHeader(
-                    child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CircleAvatar(
-                      radius: 50.0,
-                      backgroundImage: (user.photoURL != null &&
-                              user.photoURL!.isEmpty)
-                          ? AssetImage(user.photoURL.toString())
-                          : const AssetImage("assets/images/unknown-user.png"),
-                    ),
-                    const SizedBox(
-                      height: 10.0,
-                    ),
-                    Text(
-                      user.email.toString(),
-                      style:
-                          const TextStyle(color: Colors.black, fontSize: 20.0),
-                    ),
-                  ],
-                )),
-                Expanded(
-                  child: ListView(
-                    children: [
-                      ListTile(
-                        onTap: () {},
-                        leading: const Icon(
-                          Icons.home,
-                          color: Colors.black,
-                        ),
-                        title: const Text(
-                          "Home",
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      ),
-                      ListTile(
-                        onTap: () {
-                          final snackBar = SnackBar(
-                            elevation: 0,
-                            behavior: SnackBarBehavior.floating,
-                            backgroundColor: Colors.transparent,
-                            content: AwesomeSnackbarContent(
-                              title: 'Device support',
-                              message:
-                                  'Your device does not support any other login options.Please login by entering your e-mail and password',
-                              contentType: ContentType.failure,
-                            ),
-                          );
-
-                          ScaffoldMessenger.of(context)
-                            ..hideCurrentSnackBar()
-                            ..showSnackBar(snackBar);
-                        },
-                        leading: const Icon(
-                          Icons.person,
-                          color: Colors.black,
-                        ),
-                        title: const Text(
-                          "Person",
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      ),
-                      ListTile(
-                        onTap: () {
-                          context.gNavigationService.openSettings(context);
-                        },
-                        leading: const Icon(
-                          Icons.settings,
-                          color: Colors.black,
-                        ),
-                        title: const Text(
-                          "Settings",
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      ),
-                      ListTile(
-                        onTap: () async {
-                          await FirebaseAuth.instance.signOut().then((value) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ShowCaseWidget(
-                                  builder: Builder(
-                                      builder: (context) => const LoginPage()),
-                                ),
-                              ),
-                            );
-                          });
-                        },
-                        leading: const Icon(
-                          Icons.logout,
-                          color: Colors.black,
-                        ),
-                        title: const Text(
-                          "Logout",
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
+        Menu(user: user),
         TweenAnimationBuilder(
             tween: Tween<double>(begin: 0, end: value),
             duration: const Duration(microseconds: 500),
@@ -155,7 +39,11 @@ class _HomePageState extends State<HomePage> {
                   ..setEntry(0, 3, 200 * val)
                   ..rotateY((pi / 6) * val),
                 child: Scaffold(
+                  backgroundColor: Colors.grey[300],
                   appBar: AppBar(
+                    elevation: 0,
+                    iconTheme: const IconThemeData(color: Colors.white),
+                    backgroundColor: Colors.black,
                     title: Row(
                       children: [
                         IconButton(
@@ -166,13 +54,43 @@ class _HomePageState extends State<HomePage> {
                             });
                           },
                         ),
-                        const Text("3D Drawer Menu"),
+                        const Text(
+                          "Balance",
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ],
                     ),
                     automaticallyImplyLeading: false,
                   ),
-                  body: const Center(
-                    child: Text("Swipe right"),
+                  body: Padding(
+                    padding: const EdgeInsets.all(25.0),
+                    child: Column(
+                      children: [
+                        TopNeuCard(
+                            balance: "20,000",
+                            expense: '\$ 200',
+                            income: '\$ 100'),
+                        Expanded(
+                          child: Container(
+                            child: Center(
+                              child: Column(
+                                children: const [
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  MyTransaction(
+                                    transactionName: 'Teaching',
+                                    money: '300',
+                                    expenseOrIncome: 'income',
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const PlusButton(),
+                      ],
+                    ),
                   ),
                 ),
               ));

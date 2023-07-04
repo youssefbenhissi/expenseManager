@@ -18,8 +18,10 @@ import 'package:expense_manager/provider/locale_provider.dart';
 // ignore: depend_on_referenced_packages
 import 'package:firebase_core/firebase_core.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   final user = FirebaseAuth.instance.currentUser;
   if (user != null) {
@@ -52,6 +54,7 @@ class _MyAppState extends State<MyApp> {
             RepositoryProvider.value(value: widget.serviceLocator),
           ],
           child: MaterialApp(
+            debugShowCheckedModeBanner: false,
             theme: lightTheme,
             darkTheme: darkTheme,
             supportedLocales: L10n.all,
