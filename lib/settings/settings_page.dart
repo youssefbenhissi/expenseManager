@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:expense_manager/app_page_injectable.dart';
-import 'package:expense_manager/login/login_page.dart';
 import 'package:expense_manager/login/new_login_page.dart';
 import 'package:expense_manager/settings/constants.dart';
 import 'package:expense_manager/settings/select_photo_options_screen.dart';
@@ -201,7 +200,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           MaterialPageRoute(
                             builder: (context) => ShowCaseWidget(
                               builder:
-                                  Builder(builder: (context) => NewLoginPage()),
+                                  Builder(builder: (context) => const NewLoginPage()),
                             ),
                           ),
                         );

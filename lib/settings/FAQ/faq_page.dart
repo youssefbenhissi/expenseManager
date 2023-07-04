@@ -1,10 +1,5 @@
-// import 'package:easy_localization/easy_localization.dart';
 import 'package:expense_manager/app_page_injectable.dart';
 import 'package:flutter/material.dart';
-// import 'package:fluttericon/font_awesome_icons.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:getwidget/getwidget.dart';
-// import 'package:pim/screens/profile/components/Chat_Screen.dart';
 
 class FaqPage extends StatefulWidget {
   const FaqPage({super.key});
@@ -43,7 +38,6 @@ class FaqPageState extends State<FaqPage> {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Settings"),
