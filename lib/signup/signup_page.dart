@@ -37,6 +37,11 @@ class _SignUpPageState extends State<SignUpPage> {
             .then((value) {
           context.gNavigationService.openHome(context);
         });
+      }else{
+         ErrorPopUpNotification.create(
+            context: context,
+            title: "Wrong Password",
+            message: "You must confirm your password");
       }
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {

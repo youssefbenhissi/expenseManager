@@ -43,9 +43,12 @@ class _HomePageState extends State<HomePage> {
                     child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const CircleAvatar(
+                    CircleAvatar(
                       radius: 50.0,
-                      backgroundImage: AssetImage("assets/images/profile1.png"),
+                      backgroundImage: (user.photoURL != null &&
+                              user.photoURL!.isEmpty)
+                          ? AssetImage(user.photoURL.toString())
+                          : const AssetImage("assets/images/unknown-user.png"),
                     ),
                     const SizedBox(
                       height: 10.0,
@@ -125,9 +128,8 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                             );
-                           
                           });
-                           print("logout Successfully");
+                          print("logout Successfully");
                         },
                         leading: const Icon(
                           Icons.logout,
